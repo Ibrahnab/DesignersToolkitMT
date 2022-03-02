@@ -1,0 +1,984 @@
+body {
+  padding: 0px;
+  font-family: sans-serif;
+}
+
+.navContainer{
+  background-color: #8C3EC9;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index:1000;
+}
+
+.filler{
+  height:75px;
+}
+
+.navText{
+  color:white;
+  font-family: 'Montserrat';
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 20px;
+
+}
+
+/* .navText:hover {
+  border-bottom: 1px solid rgb(255, 255, 255);
+  border-bottom-width: 3px;
+  
+} */
+
+.underscore{
+  width:0px;
+  height:4px;
+  transition: width 0.4s;
+  background-color:white;
+}
+.navText:hover + .underscore{
+  background-color: white;
+  width:100%;
+}
+
+.underscore.activated{
+  width:100%;
+  background-color: white;
+}
+
+.underline{
+  background-color: #85953A;
+  color:#85953A;
+  margin-top:100px;
+  border-bottom-width:4px;
+  text-decoration: underline;
+  border-bottom: 1px solid rgb(255, 255, 255);
+}
+
+.crossIcon:hover {
+  cursor:pointer;
+}
+
+img.logoImg {  
+  display: block;
+  max-width:230px;
+  max-height:55px;
+  width: auto;
+  height: auto;
+}
+
+.navLink {
+  text-decoration: none;
+}
+
+.dashboardHeader{
+  color: black;
+  font-family: 'Montserrat';
+  font-weight: 800;
+  text-decoration: none;
+  font-size: 34px;
+  padding-top: 70px;
+}
+
+.dashboardVL{
+  border-left: 3px solid rgb(177, 177, 177);
+  height: 500px;
+  top: 150px;
+  position:absolute;
+  left: 50%;
+  width: 1px;
+}
+
+.blackHeader {
+  color:black;
+  font-family: 'Montserrat';
+  font-weight: 800;
+}
+
+.purpleHeader {
+  color: #68259D;
+  font-family: 'Montserrat';
+  font-weight: 800;
+}
+
+.whiteHeader{
+  color: white;
+  font-family: 'Montserrat';
+  font-weight: 800;
+  margin-bottom: 0;
+}
+
+.p {
+  font-family: 'Montserrat';
+  color: black;
+}
+
+.sectionContainer {
+  margin-top:50px;
+  width: 70%;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.sectionContainer.start{
+  margin-top:0px;
+}
+
+.sprintPlanImg{
+  max-width: 100%;
+  height:auto;
+  
+}
+
+.cardInfo {
+  max-width: 100%;
+  height:auto;
+}
+
+.purpleBtn{
+  background-color:#68259D;
+  border-radius: 301px;
+  padding:20px;
+  border: none;
+  align-items: center;
+  width:200px;
+  transition-duration: 300ms;
+}
+
+.purpleBtn:hover{
+  transform:scale(1.05,1.05);
+  -webkit-transform:scale(1.05,1.05);
+  -moz-transform:scale(1.05,1.05);
+  transition-duration: 300ms;
+}
+
+.dashboardHL{
+  border-top: 3px solid #BFBFBF;
+  width: 400px;
+  position: absolute;
+  height: 1px;
+  align-self: center;
+  margin-left: 4%;
+  margin-top: 1%;
+}
+
+.dashboardStandardText{
+  font-size: 15px;
+  font-family: 'Montserrat';
+  align-self: center;
+  text-align: left;
+}
+
+.dashboardStandardText.paragraph{
+  text-align: center;
+}
+
+.dashboardStartButton{
+  border: none;
+  background: none;
+}
+
+.dashboardDivMargin{
+  padding-top: 10%;
+}
+
+.textTopMargin{
+  padding-top: 8%;
+}
+
+.roamModeTopTextLeftPadding{
+  padding-left: 4%;
+}
+
+.alignNavBarText{
+  align-items: center;
+}
+
+.buttonText{
+  color:white;
+  font-family: 'Montserrat';
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 18px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.buttonText.big{
+  font-size: 24px;
+}
+
+.dashboardStartButton{
+  width: 250px;
+  height: 85px;
+  background-color: #8C3EC9;
+  border-radius: 40px;
+  transition-duration: 300ms;
+}
+
+.dashboardStartButton:hover{
+  transform:scale(1.05,1.05);
+  -webkit-transform:scale(1.05,1.05);
+  -moz-transform:scale(1.05,1.05);
+  transition-duration: 300ms;
+  
+}
+
+.dashboardCardImage{
+  width: 300px;
+  height: 300px;
+}
+
+.dashboardSignInButton{
+  width: 151px;
+  height: 51px;
+  background-color: #EE6C4D;
+  border-radius: 40px;
+  border: none;
+  transition-duration: 300ms;
+}
+
+.dashboardSignInButton:hover{
+  transform:scale(1.05,1.05);
+  -webkit-transform:scale(1.05,1.05);
+  -moz-transform:scale(1.05,1.05);
+  transition-duration: 300ms;
+}
+.dashboardCreateAccountButton{
+  width: 285px;
+  height: 51px;
+  background-color: #68259D;
+  border-radius: 40px;
+  border: none;
+  transition-duration: 300ms;
+}
+
+.dashboardCreateAccountButton:hover{
+  transform:scale(1.05,1.05);
+  -webkit-transform:scale(1.05,1.05);
+  -moz-transform:scale(1.05,1.05);
+  transition-duration: 300ms;
+}
+
+.currentplan-add-button{
+  width: 180px;
+  height: 60px;
+  background-color: #EE6C4D;
+  border-radius: 10px;
+  border: none;
+  margin-top:10px;
+  transition-duration: 300ms;
+}
+
+.currentplan-add-button:hover{
+  transform:scale(1.05,1.05);
+  -webkit-transform:scale(1.05,1.05);
+  -moz-transform:scale(1.05,1.05);
+  transition-duration: 300ms;
+}
+
+.currentplan-plus-img{
+  width: 22px;
+  height: 22px;
+}
+
+.methodCard{
+  width: 180px;
+  height:260px;
+  background-color:rgb(255, 255, 255);
+  border-radius: 5px;
+  border-width: 4px;
+  border-style:solid;
+  border-color: rgb(0, 0, 0);
+  /* margin-left:20px; */
+  margin-top:20px;
+  
+  -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 1s; /* Firefox < 16 */
+   -ms-animation: fadein 1s; /* Internet Explorer */
+    -o-animation: fadein 1s; /* Opera < 12.1 */
+       animation: fadein 1s;
+
+}
+
+.methodContainer{
+  padding:0px;
+}
+
+.cardImg {
+  margin-top:10px;
+  width:90px;
+  height:90px;
+  align-items: center;
+}
+
+.cardIcon {
+  align-items: center;
+  width: 30px;
+  height:30px;
+}
+
+.cardHeader {
+  margin-top:5px;
+  font-size: 13px;
+  padding-bottom:0px;
+  text-align:center;
+}
+
+.cardHeader.btnHead {
+  margin-top:5px;
+}
+
+.cardBtn {
+  border-radius:300px;
+  background-color:white;
+  border-color:black;
+  padding:3px;
+  width:70%;
+  transition: 0.3s;
+}
+
+.cardBtn:hover{
+  background-color: #B8D0EB;
+  color: white;
+}
+
+.circle {
+  background: lightblue;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  margin-left:0px;
+ 
+}
+.circleCol{
+  padding:1px;
+}
+
+.iconCol{
+  padding:0px;
+}
+
+.method-circle{
+  background: lightblue;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+}
+
+.understand { 
+  background: #ABBF4A;
+}
+
+.define { 
+  background: #85953A;
+}
+
+.sketch {
+  background: #3076DF;
+}
+
+.decide {
+  background: #8C3A9D;
+}
+
+.prototype{
+  background: #FF5F5F;
+}
+
+.validate {
+  background: #E52525;
+}
+
+.none{
+  background:rgb(194, 194, 194);
+}
+
+.dropDownMenu {
+  margin-top:5px;
+  background-color: #ffffff ;
+  box-shadow: 5px 10px 18px #888888;
+  border-radius:5px;
+  padding:5px;
+  border-style:solid;
+  border-color:black;
+  position:relative;
+  z-index: 100;
+
+  -webkit-animation: fadein 0.4s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 0.4s; /* Firefox < 16 */
+   -ms-animation: fadein 0.4s; /* Internet Explorer */
+    -o-animation: fadein 0.4s; /* Opera < 12.1 */
+       animation: fadein 0.4s;
+}
+
+.phaseBtn{
+  
+  border-radius:30px;
+  margin-bottom:none;
+  padding-left:10px;
+  padding-right:10px;
+  margin-bottom:5px;
+  font-size:0px;
+  letter-spacing: 0px;
+  word-spacing: 0px;
+  cursor: pointer;
+
+}
+
+.phaseBtn:hover {
+
+  -webkit-filter: brightness(70%);
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  transition: all 1s ease;
+}
+
+
+.whiteHeader.phase{
+  display:inline-block;
+  font-size: medium;
+  margin:0px;
+  padding:0px;
+}
+
+.tinyTripleDiamond {
+  margin-top:40px;
+  margin-bottom:40px;
+  width:100%;
+  height:60px;
+}
+
+.circle.sprint{
+  width:25px;
+  height:25px;
+}
+
+.sprintCol {
+  background-color: #ffffff;
+  border-left: 3px solid;
+  border-left-color: rgb(194, 194, 194);
+}
+
+.sprintsContainer{
+  margin-top:20px;
+}
+
+.triangleLeft2 {
+  width: 0px;
+  height: 0px;
+  border-style: inset;
+  border-width: 0px 100px 140px 100px;
+  border-color: transparent transparent #007bff transparent;
+  float: left;
+  transition-duration: 500ms;
+}
+
+.triangleLeft2:hover{
+  border-width: 0 110px 154px 110px;
+  cursor: pointer;
+}
+
+.triangleLeft2 p {
+  font-size:12px;
+  text-align: center;
+  top: 50px;
+  left: -70px;
+  position: relative;
+  width: 93px;
+  height: 93px;
+  margin: 0px;
+  transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+}
+
+.triangleLeft {
+  width: 0px;
+  height: 0px;
+  border-style: inset;
+  border-width: 0px 100px 140px 100px;
+  border-color: transparent transparent #007bff transparent;
+  float: left;
+  transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  -moz-transform: rotate(270deg);
+  -webkit-transform: rotate(270deg);
+  -o-transform: rotate(270deg);
+  transition-duration: 500ms;
+  margin-left:-60px;
+}
+.triangleLeft:hover{
+  border-width: 0 110px 154px 110px;
+  cursor: pointer;
+}
+
+.triangleLeft p {
+  font-size:12px;
+  text-align: center;
+  top: 50px;
+  left: -70px;
+  position: relative;
+  width: 93px;
+  height: 93px;
+  margin: 0px;
+  transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+}
+
+.triangleRight {
+  width: 0px;
+  height: 0px;
+  border-style: inset;
+  border-width: 0 100px 140px 100px;
+  border-color: transparent transparent #007bff transparent;
+  float: left;
+  transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transition-duration: 500ms;
+  margin-left:-60px;
+}
+.triangleRight:hover{
+  border-width: 0 110px 160px 110px;
+  cursor: pointer;
+}
+
+.triangleRight p {
+  font-size:12px;
+  text-align: center;
+  top: 50px;
+  left: -20px;
+  position: relative;
+  width: 93px;
+  height: 93px;
+  margin: 0px;
+  transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  -moz-transform: rotate(270deg);
+  -webkit-transform: rotate(270deg);
+  -o-transform: rotate(270deg);
+}
+
+.triangleBtn {
+  padding:0px;
+}
+
+.understandTriangle {
+  border-color: transparent transparent #ABBF4A transparent;
+}
+
+.defineTriangle {
+  border-color: transparent transparent #85953A transparent;
+}
+.sketchTriangle {
+  border-color: transparent transparent #3076DF transparent;
+}
+.decideTriangle {
+  border-color: transparent transparent #8C3A9D transparent;
+}
+.prototypeTriangle {
+  border-color: transparent transparent #FF5F5F transparent;
+}
+.validateTriangle {
+  border-color: transparent transparent #E52525 transparent;
+}
+
+.diamondContainer { 
+  padding-top:50px;
+  padding-bottom:50px;
+  align-items: center;
+}
+
+.understandTriangle.understandLock {
+  border-width: 0 110px 160px 110px;
+}
+
+.defineTriangle.defineLock {
+  border-width: 0 110px 160px 110px;
+}
+
+.sketchTriangle.sketchLock {
+  border-width: 0 110px 160px 110px;
+}
+
+.decideTriangle.decideLock {
+  border-width: 0 110px 160px 110px;
+}
+
+.prototypeTriangle.prototypeLock {
+  border-width: 0 110px 160px 110px;
+}
+
+.validateTriangle.validateLock {
+  border-width: 0 110px 160px 110px;
+}
+
+.pageContainer {
+  margin-bottom:200px;
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.methodDescriptionPanel{
+  width: 1253px;
+  background-color: white;
+  float: right;
+  -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 1s; /* Firefox < 16 */
+   -ms-animation: fadein 1s; /* Internet Explorer */
+    -o-animation: fadein 1s; /* Opera < 12.1 */
+       animation: fadein 1s;
+}
+
+.methodDescriptionImage{
+  width: 200px;
+  height: 200px;
+  align-items: center;
+}
+
+.methodDescriptionIcon{
+  width:50px;
+  height:50px;
+}
+
+.methodDescriptionHeader{
+  text-align: center;
+  font-size: 24px;
+  font-family: "Montserrat";
+  color: #68259D;
+}
+
+.methodDescriptionBodyText{
+  font-size: 16px;
+  font-family: "Montserrat";
+  text-align: left;
+  margin: 0px !important;
+}
+
+.method-section-methodologies{
+  border: 2px solid black;
+}
+
+.stepCircle{
+  width:69px;
+  height:69px;
+  border-radius: 50%;
+  border: 3px solid gold;
+  border-width: 3px;
+  margin: 0px !important;
+  margin-left: 0px !important;
+}
+
+.triangle-understand {
+  width: 0;
+  height: 0;
+  border-top: 40px solid transparent;
+  border-right: 50px solid #ABBF4A;
+  border-bottom: 40px solid transparent;
+}
+
+.triangle-smaller-understand{
+  width: 0;
+  height: 0;
+  border-top: 30px solid transparent;
+  border-right: 40px solid black;
+  border-bottom: 30px solid transparent;
+  margin-top: 50% !important;
+}
+
+.triangle-define{
+  width: 0;
+  height: 0;
+  border-top: 40px solid transparent;
+  border-left: 50px solid #85953A;
+  border-bottom: 40px solid transparent;
+}
+
+.triangle-sketch{
+  width: 0;
+  height: 0;
+  border-top: 40px solid transparent;
+  border-right: 50px solid #3076DF;
+  border-bottom: 40px solid transparent;
+}
+
+.triangle-decide{
+  width: 0;
+  height: 0;
+  border-top: 40px solid transparent;
+  border-left: 50px solid #8C3A9D;
+  border-bottom: 40px solid transparent;
+}
+
+.triangle-prototype{
+  width: 0;
+  height: 0;
+  border-top: 40px solid transparent;
+  border-right: 50px solid #FF5F5F;
+  border-bottom: 40px solid transparent;
+}
+
+.triangle-validate{
+  width: 0;
+  height: 0;
+  border-top: 40px solid transparent;
+  border-left: 50px solid #E52525;
+  border-bottom: 40px solid transparent;
+}
+
+.adjust-col-width{
+  padding: 0;
+}
+
+.method-step-text{
+  font-size: 16px;
+  font-family: "Montserrat";
+  width: fit-content;
+  padding-top: 2%;
+}
+
+.method-icons-left-margin{
+  margin-left: 8%;
+}
+
+.col-fit-content{
+  width: fit-content !important;
+}
+
+.step-number-text{
+  font-family: "Montserrat";
+  font-size: 18px;
+  text-align: center;
+  margin-top: 25%;
+}
+
+.suggestion-box{
+  background-color: #B8D0EB;
+  border: 3px solid black;
+  width:700px;
+  text-align:center;
+  margin: 0 auto;
+  margin-left:-100px;
+}
+
+.refresh-image{
+  width: 49px;
+  height: 49px;
+  transition-duration: 300ms;
+}
+
+.refresh-image:hover{
+  cursor: pointer;
+  transform:scale(1.05,1.05);
+  -webkit-transform:scale(1.05,1.05);
+  -moz-transform:scale(1.05,1.05);
+  transition-duration: 300ms;
+  
+}
+
+.refresh-image[wobble="1"]{
+  animation: wobble 1s 1;
+}
+
+/*width: 750px !important;
+  height: 450px !important;*/
+
+  @keyframes wobble {
+    25% {
+      transform: rotate(15deg);
+    }
+    50% {
+      transform: rotate(-30deg);
+    }
+    75% {
+      transform: rotate(5deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+.navBar {
+  position: relative;
+}
+
+.navBar button {
+  position: fixed;
+  left: 40px;
+  top: 40px;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.menuNav {
+  overflow-y: scroll;
+  list-style: none;
+  position: fixed;
+  top: 0;
+  background: #8960A9;
+  left: 0;
+  bottom: 0;
+  height: 100vh;
+  width: 0;
+  overflow: hidden;
+  max-width: 290px;
+  z-index: 9;
+  padding:40px;
+}
+
+.menuNav.showMenu {
+  width: 100%;
+}
+
+a {
+  display: block;
+  padding: 10px 40px;
+  text-decoration: none;
+  color: #3fffd2;
+  font-weight: bold;
+}
+
+.col-30-size{
+  width: 30px !important;
+}
+
+.menuNav li:first-child {
+  margin-top: 7rem;
+}
+
+.searchBtn {
+  width: 40px;
+  height: 40px;
+  padding:5px;
+  border-radius: 5px;
+  margin-bottom:10px;
+}
+.searchBtn:hover{
+  cursor: pointer;
+}
+
+.navBar2 {
+  width: 30%;
+  height:100%;
+  overflow-y:auto;
+  position:fixed;
+  float:right;
+  z-index: 900;
+  background-color: white;
+  box-shadow: 4px 0px 10px -2px rgba(0,0,0,0.5)  ;
+  /* transition: top 600ms cubic-bezier(0.17, 0.04, 0.03, 0.94); */
+  left:-500px;
+  -webkit-animation: slide 0.5s forwards;
+  -webkit-animation-delay: 2s;
+  animation: slide 0.5s forwards;
+  animation-delay: 0s;
+}
+
+.firstSearchRow{
+  margin-top: 10px;
+  margin-left: 20px;
+}
+
+.hamburgerContainer{
+  margin-left:20px;
+}
+
+@-webkit-keyframes slide {
+  100% { left: 0; }
+}
+
+@keyframes slide {
+  100% { left: 0; }
+}
+
+.rangeSlider {
+  font-family: 'Montserrat';
+  font-weight: 700;
+}
+
+.inputNumber {
+  width:70px;
+  height:30px;
+  border-radius: 30px;
+  border-width: 2px;
+  font-family: 'Montserrat';
+  font-weight:300;
+  font-size: 13px;
+  text-align: center;
+}
+
+.smallBlackHeader {
+  font-family: 'Montserrat';
+  font-size:14px;
+  font-weight: 800;
+}
+
+.textWrapper {
+	background-color: #2196F3;
+    width:100px;
+    height:25px;
+    border-radius:0px 30px 30px 0px;
+    margin-left: -10px;
+    
+} 
+
+.rowFiller {
+  height:150px;
+}
+
+.backBtn{
+  transition: transform 250ms;
+}
+
+.backBtn:hover {
+  transform: translateX(-10px);
+  cursor: pointer;
+}
+
+.searchCol {
+  max-width: 50px;
+}
+
+.phaseCheckbox {
+  font-family: 'Montserrat';
+  font-weight: 300;
+  font-size:13px;
+}
