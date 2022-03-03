@@ -33,12 +33,38 @@ const MethodDescriptionPanel = ({methodDescriptionData, viewingMethod, flipViewi
             </div>
 
             <div className="row justify-content-md-center mt-1">
-                <div className="col-sm-6">
+                <div className="col-sm-5">
+                    <h1> Description </h1>
                     <p className="methodDescriptionBodyText">{methodDescriptionData.description}</p>
                 </div>
+                <div className="col-sm-2">
+                    <Row className="justify-content-center">  
+                        <img src="personIcon2.svg" className="methodDescriptionIcon mt-2"/>
+                        <p className="blackHeader cardHeader">{methodDescriptionData.participantRange}</p>
+                    </Row>
+                    <Row className="justify-content-center">
+                        <img src="clockIcon.svg" className="methodDescriptionIcon mt-2"/>
+                        <p className="blackHeader cardHeader">{methodDescriptionData.timeRange}</p>
+                    </Row>
+                    <Row className="justify-content-center"> 
+                        <div className="row justify-content-md-center">
+                            <div className="col-auto">
+                            <img src="tripleDiamondIcon2.svg" className="methodDescriptionIcon"/>
+                        </div>
+                        </div>
+                        <div className="row justify-content-md-center">
+                            {methodDescriptionData.phase.map((phase) => (
+                                    <Col md="auto" className="mt-3">
+                                        <div className={`method-circle + ${phase}`}></div>
+                                    </Col>
+
+                            ))}
+                        </div>
+                    </Row>
+                </div>  
             </div>
 
-            <div className="row justify-content-md-center mt-3">
+            {/*<div className="row justify-content-md-center mt-3">
                 <Col md="auto">
                     <img src="personIcon2.svg" className="methodDescriptionIcon mt-2"/>
                     <p className="blackHeader cardHeader">{methodDescriptionData.participantRange}</p>
@@ -51,7 +77,7 @@ const MethodDescriptionPanel = ({methodDescriptionData, viewingMethod, flipViewi
                     <div className="row justify-content-md-center">
                         <div className="col-auto">
                         <img src="tripleDiamondIcon2.svg" className="methodDescriptionIcon"/>
-                        </div>
+                    </div>
                     </div>
                     <div className="row justify-content-md-center">
                         {methodDescriptionData.phase.map((phase) => (
@@ -62,7 +88,7 @@ const MethodDescriptionPanel = ({methodDescriptionData, viewingMethod, flipViewi
                         ))}
                     </div>
                 </Col>
-            </div>
+            </div>}*/}
             <div className="row justify-content-md-center mb-3">
                 <div className="col-sm-6 md-2">
                     {methodDescriptionData.steps.map((step) =>(
