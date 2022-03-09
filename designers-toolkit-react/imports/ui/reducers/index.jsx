@@ -1,5 +1,5 @@
 import counterReducer from './counter'
-import loggedReducer from './isLogged'
+import loggedReducer from './loggedReducer'
 import methodReducer from './methodReducer'
 import { combineReducers } from 'redux'
 

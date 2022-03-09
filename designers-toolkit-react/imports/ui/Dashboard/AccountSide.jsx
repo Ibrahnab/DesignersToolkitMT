@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
@@ -10,6 +10,10 @@ import { Meteor } from 'meteor/meteor';
 
 export const AccountSide = () => {
   
+    const [login, setState] = useState(false);
+
+    //createAccount.func(login);
+
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
