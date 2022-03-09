@@ -982,3 +982,7 @@ a {
   font-weight: 300;
   font-size:13px;
 }
+.methodDiffIcon{
+  height: 15px;
+  width: 50px;
+}

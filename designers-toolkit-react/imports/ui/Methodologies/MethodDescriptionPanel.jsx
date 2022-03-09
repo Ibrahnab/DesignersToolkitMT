@@ -34,7 +34,7 @@ const MethodDescriptionPanel = ({methodDescriptionData, viewingMethod, flipViewi
 
             <div className="row justify-content-md-center mt-1">
                 <div className="col-sm-5">
-                    <h1> Description </h1>
+                    <h3> Description </h3>
                     <p className="methodDescriptionBodyText">{methodDescriptionData.description}</p>
                 </div>
                 <div className="col-sm-2">
@@ -57,7 +57,6 @@ const MethodDescriptionPanel = ({methodDescriptionData, viewingMethod, flipViewi
                                     <Col md="auto" className="mt-3">
                                         <div className={`method-circle + ${phase}`}></div>
                                     </Col>
-
                             ))}
                         </div>
                     </Row>
@@ -102,6 +101,34 @@ const MethodDescriptionPanel = ({methodDescriptionData, viewingMethod, flipViewi
                         </div>
                         ))}
                 </div>
+            </div>
+            <div className="row justify-content-md-center mb-1">
+                <div className="col-sm-7">
+                    <hr></hr>
+                    <h5 className="methodDescriptionHeader">Recommended tools</h5>
+                </div>
+            </div>
+            <div className="row justify-content-md-center mb-1">
+                {methodDescriptionData.recommendedToolsIcon.map((recommendedToolsIcon) =>(
+                    (methodDescriptionData.recommendedToolsIcon.indexOf(recommendedToolsIcon) < 1) //If the first element, else
+                    ?<Col md="auto">
+                        <img src={recommendedToolsIcon} className="methodDescriptionIcon mt-2" onClick={()=> window.open(methodDescriptionData.recommendedToolsLink[methodDescriptionData.recommendedToolsIcon.indexOf(recommendedToolsIcon)], "_blank", 'noopener,noreferrer')}/>
+                    </Col>
+                    :<Col md="auto" className="method-icons-left-margin">
+                        <img src={recommendedToolsIcon} className="methodDescriptionIcon mt-2" onClick={()=> window.open(methodDescriptionData.recommendedToolsLink[methodDescriptionData.recommendedToolsIcon.indexOf(recommendedToolsIcon)], "_blank", 'noopener,noreferrer')}/>
+                    </Col>
+                ))}
+            </div>
+            <div className="row justify-content-md-center mb-1">
+                {methodDescriptionData.recommendedToolsDifficulty.map((recommendedToolsDifficulty) =>(
+                    (methodDescriptionData.recommendedToolsDifficulty.indexOf(recommendedToolsDifficulty) < 1) //If the first element, else
+                    ?<Col md="auto">
+                        <img src={recommendedToolsDifficulty} className="methodDiffIcon mt-2"/>
+                    </Col>
+                    :<Col md="auto" className="method-icons-left-margin">
+                            <img src={recommendedToolsDifficulty} className="methodDiffIcon mt-2"/>
+                    </Col>
+                ))}
             </div>
         </div>
     )
