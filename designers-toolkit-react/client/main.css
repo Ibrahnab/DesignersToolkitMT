@@ -1031,3 +1031,7 @@ a {
 .teamsBox:hover {
   cursor:pointer;
 }
+
+.error{
+  color:rgb(255, 0, 0);
+}

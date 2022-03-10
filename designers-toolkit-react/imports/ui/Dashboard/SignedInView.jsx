@@ -39,7 +39,9 @@ const SignedInView = () => {
                         </Col>
                     </Row>
                     <Row>
-                        <TeamsBox></TeamsBox>
+                        <Col>
+                            <TeamsBox/>
+                        </Col>
                     </Row>
                 
                 </Col>
