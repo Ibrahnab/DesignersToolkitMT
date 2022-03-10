@@ -8,10 +8,13 @@ import Container from "react-bootstrap/Container";
 import {signIn, signOut} from "../actions/index";
 import {connect} from "react-redux";
 import loggedReducer from "../reducers/loggedReducer"
+import SignedInView from './SignedInView'
 
-export const Dashboard = ({isLogged, signIn, signOut}) => {
+const Dashboard = ({loggedIn, signIn, signOut}) => {
 
     const user = useTracker(() => Meteor.user());
+
+    const logout = () => Meteor.logout();
   
     const [signup, setState] = useState(false);
 
@@ -22,20 +25,23 @@ export const Dashboard = ({isLogged, signIn, signOut}) => {
     return (
     <div>
       <Container>
-        <Row className='dashboardRowHeader'>
-          <div>
-          <h1>{isLogged} </h1>
-          </div>
+        {!user &&
+          <Row className='dashboardRowHeader'>
           <Col><RoamMode/></Col>
           <Col md={1}><div className = "dashboardVL"></div></Col>
             
-          <Col md ={{offset:1}}>
-            <Row>
-              <AccountSide/>
-            </Row>
-            
+            <Col md ={{offset:1}}>
+              <Row>
+                <AccountSide/>
+              </Row>
             </Col>
-        </Row>
+          </Row>
+        }
+        {user &&
+          
+          <SignedInView/>
+        }
+        
       </Container>
     </div>
     )  
@@ -50,9 +56,11 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = (state) => {
   return {
-    isLogged: state.loggedReducer.loggedIn
+    loggedIn: state.loggedReducer.loggedIn
   };
 };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
 
   /*<Col><AccountSide/></Col>
         <Col><RoamMode/></Col>*/
