@@ -5,6 +5,7 @@ import { useTracker } from 'meteor/react-meteor-data';
 import Container from "react-bootstrap/Container";
 import {signIn, signOut} from "../actions/index";
 import {connect} from "react-redux";
+import ProjectBox from "./ProjectBox"
 
 const SignedInView = () => {
 
@@ -14,16 +15,36 @@ const SignedInView = () => {
 
     return(
         <Container>
-            <Row className='sectionContainer'>
-              <Col>
+            <Row d-flex className='signedInHeader'>
+              <Col md="">
                 <h1 className="blackHeader"><em>Welcome back!</em></h1>
               </Col>
               
               <Col md='auto'>
+              <h3 className="blackHeader">Signed in as <em>{user.username}</em></h3>
                 <button className="dashboardSignInButton" onClick={logout}>
+                  
                   <p className="buttonText">Sign Out</p>
                 </button>
               </Col>
+            </Row>
+          <hr></hr>
+          <Row>
+                {/* Teams */}
+                <Col></Col>
+
+                {/* Separating lines */}
+                <Col md={1}><div className = "dashboardVL signedIn"></div></Col>
+
+                {/* Projects */}
+                <Col>
+                    <Row>
+                        <Col>
+                            <ProjectBox></ProjectBox>
+                        </Col>
+                    </Row>
+                    
+                </Col>
           </Row>
         </Container>
     )

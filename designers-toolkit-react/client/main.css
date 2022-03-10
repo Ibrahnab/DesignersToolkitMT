@@ -92,6 +92,12 @@ img.logoImg {
   width: 1px;
 }
 
+.dashboardVL.signedIn{
+  height:500px;
+  margin-top:150px;
+  border-left: 1px solid rgb(177, 177, 177);
+}
+
 .blackHeader {
   color:black;
   font-family: 'Montserrat';
@@ -981,4 +987,15 @@ a {
   font-family: 'Montserrat';
   font-weight: 300;
   font-size:13px;
+}
+
+.signedInHeader{
+  margin-top:70px;
+}
+
+.projectBox{
+  width:200px;
+  height:175px;
+  background-color: #F4F4F4;
+  border-radius: 5px 5px 5px 5px;
 }

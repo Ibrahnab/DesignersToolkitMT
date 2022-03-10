@@ -27,8 +27,8 @@ const Dashboard = ({loggedIn, signIn, signOut}) => {
       <Container>
         {!user &&
           <Row className='dashboardRowHeader'>
-          <Col><RoamMode/></Col>
-          <Col md={1}><div className = "dashboardVL"></div></Col>
+            <Col><RoamMode/></Col>
+            <Col md={1}><div className = "dashboardVL"></div></Col>
             
             <Col md ={{offset:1}}>
               <Row>
