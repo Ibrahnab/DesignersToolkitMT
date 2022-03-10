@@ -6,6 +6,7 @@ import methodReducer from "../reducers/methodReducer";
 import {loadCurrentMethod} from "../actions/index";
 import {connect} from "react-redux";
 import {flipViewingMethod} from "../actions/index";
+import { DEVICE_SIZES } from "react-bootstrap/esm/createUtilityClasses";
 
 
 const MethodDescriptionPanel = ({methodDescriptionData, viewingMethod, flipViewingMethod}) => {
@@ -39,26 +40,32 @@ const MethodDescriptionPanel = ({methodDescriptionData, viewingMethod, flipViewi
                 </div>
                 <div className="col-sm-2">
                     <Row className="justify-content-center">  
-                        <img src="personIcon2.svg" className="methodDescriptionIcon mt-2"/>
-                        <p className="blackHeader cardHeader">{methodDescriptionData.participantRange}</p>
+                        <Col md="auto">
+                            <img src="personIcon2.svg" className="methodDescriptionIcon mt-2"/>
+                            <p className="blackHeader cardHeader">{methodDescriptionData.participantRange}</p>
+                        </Col>
                     </Row>
                     <Row className="justify-content-center">
-                        <img src="clockIcon.svg" className="methodDescriptionIcon mt-2"/>
-                        <p className="blackHeader cardHeader">{methodDescriptionData.timeRange}</p>
+                        <Col md="auto">
+                            <img src="clockIcon.svg" className="methodDescriptionIcon mt-2"/>
+                            <p className="blackHeader cardHeader">{methodDescriptionData.timeRange}</p>
+                        </Col>
                     </Row>
                     <Row className="justify-content-center"> 
-                        <div className="row justify-content-md-center">
-                            <div className="col-auto">
-                            <img src="tripleDiamondIcon2.svg" className="methodDescriptionIcon"/>
-                        </div>
-                        </div>
-                        <div className="row justify-content-md-center">
-                            {methodDescriptionData.phase.map((phase) => (
-                                    <Col md="auto" className="mt-3">
-                                        <div className={`method-circle + ${phase}`}></div>
-                                    </Col>
-                            ))}
-                        </div>
+                        <Col md="auto">
+                            <div className="row justify-content-md-center">
+                                <div className="col-auto">
+                                <img src="tripleDiamondIcon2.svg" className="methodDescriptionIcon"/>
+                            </div>
+                            </div>
+                            <div className="row justify-content-md-center">
+                                {methodDescriptionData.phase.map((phase) => (
+                                        <Col md="auto" className="mt-3">
+                                            <div className={`method-circle + ${phase}`}></div>
+                                        </Col>
+                                ))}
+                            </div>
+                        </Col>
                     </Row>
                 </div>  
             </div>
@@ -129,6 +136,23 @@ const MethodDescriptionPanel = ({methodDescriptionData, viewingMethod, flipViewi
                             <img src={recommendedToolsDifficulty} className="methodDiffIcon mt-2"/>
                     </Col>
                 ))}
+            </div>
+            <div className="row justify-content-md-center mb-1">
+                <div className="col-sm-7">
+                    <hr></hr>
+                    <h5 className="methodDescriptionHeader">Team Notes</h5>
+                </div>
+            </div>
+            <div className="row justify-content-md-center mb-6">
+                <Col md="auto"> 
+                    <div className="team-note">
+                        <textarea className="note-textarea"
+                            rows="20"
+                            cols="10"
+                            placeholder="Type to add a note..."
+                        ></textarea>
+                    </div>
+                </Col>
             </div>
         </div>
     )
