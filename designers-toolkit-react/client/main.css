@@ -213,6 +213,10 @@ img.logoImg {
   margin-bottom: auto;
 }
 
+.buttonText.cancel{
+  color: #959595;
+}
+
 .buttonText.big{
   font-size: 24px;
 }
@@ -245,6 +249,10 @@ img.logoImg {
   border-radius: 40px;
   border: none;
   transition-duration: 300ms;
+}
+
+.dashboardSignInButton.cancel{
+  background-color: #E8E8E8;
 }
 
 .dashboardSignInButton:hover{

@@ -109,6 +109,19 @@ export const AccountSide = () => {
                             <button className="dashboardSignInButton"><p className="buttonText">Sign In</p></button>
                         </Col>
                     </div>
+
+                    <div className="dashboardHL"></div>
+            
+                    <div className="row d-flex justify-content-center flex-nowrap textTopMargin">
+                        <Col>
+                            <p className="dashboardStandardText paragraph">Don’t have an account? Create a new one here</p>
+                        </Col>
+                    </div>
+                    <div className="row d-flex justify-content-center flex-nowrap">
+                        <Col md='auto'>
+                            <button className="dashboardCreateAccountButton" onClick={() => setCreateForm(true)}><p className="buttonText">Create New Account</p></button>
+                        </Col>
+                    </div>
                     </form>
                 </Fragment>
             }
@@ -176,27 +189,17 @@ export const AccountSide = () => {
                         </Col>
                     </Row>
 
-                    <div className="row d-flex justify-content-center flex-nowrap">
+                    <div className="row d-flex justify-content-center flex-nowrap dashboardDivMargin">
                         <Col md='auto'>
                             <button className="dashboardSignInButton"><p className="buttonText">Create</p></button>
+                        </Col>
+                        <Col md='auto'>
+                            <button className="dashboardSignInButton cancel" type="button" onClick={() => setCreateForm(false)}><p className="buttonText cancel">Cancel</p></button>
                         </Col>
                     </div>
                     </form>
                 </Fragment>
             }   
-
-            <div className="dashboardHL"></div>
-            
-            <div className="row d-flex justify-content-center flex-nowrap textTopMargin">
-                <Col>
-                    <p className="dashboardStandardText paragraph">Don’t have an account? Create a new one here</p>
-                </Col>
-            </div>
-            <div className="row d-flex justify-content-center flex-nowrap">
-                <Col md='auto'>
-                    <button className="dashboardCreateAccountButton" onClick={() => setCreateForm(true)}><p className="buttonText">Create New Account</p></button>
-                </Col>
-            </div>
         </Container>
         
     </div>
