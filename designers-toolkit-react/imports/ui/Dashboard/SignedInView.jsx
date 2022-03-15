@@ -7,12 +7,19 @@ import {signIn, signOut} from "../actions/index";
 import {connect} from "react-redux";
 import ProjectBox from "./ProjectBox";
 import TeamsBox from "./TeamsBox";
+import CreateProjectForm from "./CreateProjectForm";
 
 const SignedInView = () => {
 
     const user = useTracker(() => Meteor.user());
 
     const logout = () => Meteor.logout();
+
+    const [createProject, setCreateForm] = useState(false);
+
+    const togglePopup = () => {
+        setCreateForm(!createProject)
+    }
 
     return(
         <Container>
@@ -58,12 +65,27 @@ const SignedInView = () => {
                     </Row>
                     <Row>
                         <Col>
+                            <div className="projectBox" onClick={togglePopup}>
+                            <Row>
+                                <Col className="justify-content-md-center d-flex">
+                                    <img className="cardImg" src="plus_icon.svg"></img>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col>
+                                    <h5 className="blackHeader cardHeader">Create new Project</h5>
+                                </Col>
+                            </Row>
+                            </div>
+                        </Col>
+                        <Col>
                             <ProjectBox></ProjectBox>
                         </Col>
                     </Row>
                     
                 </Col>
           </Row>
+          {createProject && <CreateProjectForm handleClose={togglePopup}/>}
         </Container>
     )
 
