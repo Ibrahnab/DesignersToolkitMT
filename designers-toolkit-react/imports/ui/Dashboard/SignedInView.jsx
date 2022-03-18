@@ -8,6 +8,7 @@ import {connect} from "react-redux";
 import ProjectBox from "./ProjectBox";
 import TeamsBox from "./TeamsBox";
 import CreateProjectForm from "./CreateProjectForm";
+import CreateTeamForm from "./CreateTeamForm";
 
 const SignedInView = () => {
 
@@ -16,9 +17,14 @@ const SignedInView = () => {
     const logout = () => Meteor.logout();
 
     const [createProject, setCreateForm] = useState(false);
+    const [createTeam, setCreateTeamForm] = useState(false);
 
     const togglePopup = () => {
-        setCreateForm(!createProject)
+        setCreateForm(!createProject);
+    }
+
+    const toggleTeamPopup = () => {
+        setCreateTeamForm(!createTeam);
     }
 
     return(
@@ -46,6 +52,20 @@ const SignedInView = () => {
                         </Col>
                     </Row>
                     <Row>
+                        <Col>
+                            <div className="teamsBox" onClick={toggleTeamPopup}>
+                                <Row>
+                                    <Col className="justify-content-md-center d-flex">
+                                        <img className="cardImg" src="plus_icon.svg"></img>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col>
+                                        <h5 className="blackHeader cardHeader">Create new Team</h5>
+                                    </Col>
+                                </Row>
+                            </div>
+                        </Col>
                         <Col>
                             <TeamsBox/>
                         </Col>
@@ -79,13 +99,15 @@ const SignedInView = () => {
                             </div>
                         </Col>
                         <Col>
-                            <ProjectBox></ProjectBox>
+                            <ProjectBox></ProjectBox>   
                         </Col>
                     </Row>
                     
                 </Col>
           </Row>
+          {createTeam && <CreateTeamForm handleClose={toggleTeamPopup}/>}
           {createProject && <CreateProjectForm handleClose={togglePopup}/>}
+          
         </Container>
     )
 
