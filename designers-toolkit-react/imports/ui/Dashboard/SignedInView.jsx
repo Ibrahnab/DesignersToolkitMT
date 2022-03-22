@@ -9,6 +9,8 @@ import ProjectBox from "./ProjectBox";
 import TeamsBox from "./TeamsBox";
 import CreateProjectForm from "./CreateProjectForm";
 import CreateTeamForm from "./CreateTeamForm";
+import { ProjectsCollection } from '/imports/api/ProjectsCollection';
+import { TeamsCollection } from '/imports/api/TeamsCollection';
 
 const SignedInView = () => {
 
@@ -26,6 +28,35 @@ const SignedInView = () => {
     const toggleTeamPopup = () => {
         setCreateTeamForm(!createTeam);
     }
+
+    //--------- Teams functions
+
+    const createTeamM = ({teamName, teamMembers}) => {
+        Meteor.call('teams.insert', teamName, teamMembers);
+    }
+
+    const removeTeam = ({teamId}) => {
+        Meteor.call('teams.remove', teamId);
+    }
+
+    //----------- Projects functions
+
+    const createProjectM = ({projectName, timeAllocated}) => {
+        Meteor.call('projects.insert', projectName, timeAllocated);
+    }
+
+    const deleteProject = ({projectId}) => {
+        Meteor.call('projects.remove', projectId);
+    }
+
+    const projects = useTracker(() => {
+        if(!user){
+            return [];
+        }
+
+        return ProjectsCollection.find({owner: user.username}).fetch();
+
+    });
 
     return(
         <Container>
@@ -100,6 +131,9 @@ const SignedInView = () => {
                         </Col>
                         <Col>
                             <ProjectBox></ProjectBox>   
+                            {projects.map(project => (
+                                <ProjectBox />
+                            ))}
                         </Col>
                     </Row>
                     

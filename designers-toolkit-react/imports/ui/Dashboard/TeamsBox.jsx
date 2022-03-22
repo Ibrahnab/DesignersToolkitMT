@@ -8,6 +8,13 @@ const TeamsBox = () =>{
     return(
         <div className="teamsBox">
             <Row>
+                <Col>
+                    <div className="editBtn">
+                        <img src="dots.svg"/>
+                    </div>
+                </Col>
+            </Row>
+            <Row>
                 <Col className="justify-content-md-center d-flex">
                     <img className="cardImg" src="projectDiamonds.svg"></img>
                 </Col>

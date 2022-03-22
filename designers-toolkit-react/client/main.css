@@ -1002,6 +1002,7 @@ a {
 }
 
 .projectBox{
+  position:relative;
   width:200px;
   height:175px;
   background-color: #F4F4F4;
@@ -1018,6 +1019,7 @@ a {
 }
 
 .teamsBox{
+  position:relative;
   width:250px;
   height:175px;
   border-width: 2px;
@@ -1100,4 +1102,12 @@ a {
   border: 0px solid #999;
   border-radius:30px;
   overflow: auto;
+}
+
+.editBtn{
+  position:absolute;
+  top:0;
+  right:0;
+  padding-right:10px;
+  
 }

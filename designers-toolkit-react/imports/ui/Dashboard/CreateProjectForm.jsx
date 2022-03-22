@@ -24,11 +24,15 @@ const CreateProjectForm = ({handleClose}) => {
         
     }
 
+    const createProject = ({projectName, timeAllocated}) => {
+        Meteor.call('projects.insert', "Test project", [20,20,20,20,20,20]);
+    }
+
     return(
         <div className="popup-box">
             <div className="box">
             <Container className="CreateProjectForm">
-                <form onSubmit={submitNewAccount} className="login-form">
+                <form className="login-form">
                     <Row className="mt-3 justify-content-md-center">
                         <Col md="auto"><h5 className="blackHeader">Create a new project</h5></Col>
                     </Row>
@@ -68,7 +72,7 @@ const CreateProjectForm = ({handleClose}) => {
                     </Row>
                     <Row className="mt-5 justify-content-md-center">
                         <Col md='auto'>
-                            <button className="dashboardSignInButton"><p className="buttonText">Create</p></button>
+                            <button className="dashboardSignInButton" onClick={() => createProject("Test Project",[20,20,20,20,20,20])}><p className="buttonText">Create</p></button>
                         </Col>
                         <Col md='auto'>
                             <button className="dashboardSignInButton cancel" type="button" onClick={() => handleClose()}><p className="buttonText cancel">Cancel</p></button>
