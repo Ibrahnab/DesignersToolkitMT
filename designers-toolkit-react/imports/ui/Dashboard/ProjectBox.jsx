@@ -32,7 +32,7 @@ const ProjectBox = ({project}) =>{
             </Row>
             <Row>
                 <Col>
-                    <h5 className="blackHeader cardHeader">Master thesis VT22</h5>
+                    <h5 className="blackHeader cardHeader">{project.projectName}</h5>
                 </Col>
             </Row>
             {openEdit && <EditProject handleClose={switchEdit} project={project} />}

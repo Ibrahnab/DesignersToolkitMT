@@ -6,26 +6,20 @@ import Container from "react-bootstrap/Container";
 
 const CreateProjectForm = ({handleClose}) => {
 
-    const submitNewAccount = e => {
-        e.preventDefault();
+    const [newName, changeName] = useState("Project name");
+    const [newAllocatedTime, changeAllocated] = useState([30,30,60,15,120,60]);
 
-        if(newPassword === confirmNewPassword) {
-            Accounts.createUser({
-                username: newUsername,
-                password: newPassword
-            }, function(error){
-                console.log(error.reason);
-                setErrorMessage(error.reason);  
-            })
-        }
+    const changeAllocatedByIndex = index => e => {
+        let newArr = [...newAllocatedTime];
+
+        newArr[index] = parseInt(e.target.value);
+
+        console.log(newArr);
+        changeAllocated(newArr);
     }
 
-    const findUser = (submittedUser) => {
-        
-    }
-
-    const createProject = ({projectName, timeAllocated}) => {
-        Meteor.call('projects.insert', "Test project", [20,20,20,20,20,20]);
+    const createProject = () => {
+        Meteor.call('projects.insert', newName, newAllocatedTime);
     }
 
     return(
@@ -38,7 +32,7 @@ const CreateProjectForm = ({handleClose}) => {
                     </Row>
                     <Row className="mt-3">
                         <Col><h5 className="blackHeader">Project name</h5></Col>
-                        <Col><input type="text" className="text-line" /></Col>
+                        <Col><input type="text" className="text-line" placeholder={"Project name"}  onChange={(e) => changeName(e.target.value)}/></Col>
                     </Row>
 
                     {/* <Row className="mt-3">
@@ -52,27 +46,27 @@ const CreateProjectForm = ({handleClose}) => {
 
                     <Row className="mt-3">
                         <Col><h5 className="blackHeader"> Understand </h5></Col>
-                        <Col><input type="text" className="text-line small" value="30"/></Col>
+                        <Col><input type="text" className="text-line small" placeholder={30} onChange={changeAllocatedByIndex(0)}/></Col>
                         <Col><h5 className="blackHeader"> Define </h5></Col>
-                        <Col><input type="text" className="text-line small" value="30"/></Col>
+                        <Col><input type="text" className="text-line small" placeholder={30} onChange={changeAllocatedByIndex(1)}/></Col>
                     </Row>
 
                     <Row className="mt-3">
                         <Col><h5 className="blackHeader"> Sketch </h5></Col>
-                        <Col><input type="text" className="text-line small" value="60"/></Col>
+                        <Col><input type="text" className="text-line small" placeholder={60} onChange={changeAllocatedByIndex(2)}/></Col>
                         <Col><h5 className="blackHeader"> Decide </h5></Col>
-                        <Col><input type="text" className="text-line small" value="15"/></Col>
+                        <Col><input type="text" className="text-line small" placeholder={15} onChange={changeAllocatedByIndex(3)}/></Col>
                     </Row>
 
                     <Row className="mt-3">
                         <Col><h5 className="blackHeader"> Prototype </h5></Col>
-                        <Col><input type="text" className="text-line small" value="120"/></Col>
+                        <Col><input type="text" className="text-line small" placeholder={120} onChange={changeAllocatedByIndex(4)}/></Col>
                         <Col><h5 className="blackHeader"> Validate </h5></Col>
-                        <Col><input type="text" className="text-line small" value="60"/></Col>
+                        <Col><input type="text" className="text-line small" placeholder={60} onChange={changeAllocatedByIndex(5)}/></Col>
                     </Row>
                     <Row className="mt-5 justify-content-md-center">
                         <Col md='auto'>
-                            <button className="dashboardSignInButton" onClick={() => createProject("Test Project",[20,20,20,20,20,20])}><p className="buttonText">Create</p></button>
+                            <button className="dashboardSignInButton" onClick={createProject}><p className="buttonText">Create</p></button>
                         </Col>
                         <Col md='auto'>
                             <button className="dashboardSignInButton cancel" type="button" onClick={() => handleClose()}><p className="buttonText cancel">Cancel</p></button>
