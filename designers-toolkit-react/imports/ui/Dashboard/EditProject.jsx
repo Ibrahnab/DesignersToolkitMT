@@ -13,6 +13,15 @@ const EditProject = ({handleClose, project}) => {
     const [newName, changeName] = useState(project.projectName);
     const [newAllocatedTime, changeAllocated] = useState(project.timeAllocated);
 
+    const changeAllocatedByIndex = index => e => {
+        let newArr = [...newAllocatedTime];
+
+        newArr[index] = parseInt(e.target.value);
+
+        console.log(newArr);
+        changeAllocated(newArr);
+    }
+
     const saveEdit = () => {
         Meteor.call('projects.editProject', project._id, newName, newAllocatedTime);
     }
@@ -39,23 +48,23 @@ const EditProject = ({handleClose, project}) => {
 
                     <Row className="mt-3">
                         <Col><h5 className="blackHeader"> Understand </h5></Col>
-                        <Col><input type="text" className="text-line small" placeholder={project.timeAllocated[0]}/></Col>
+                        <Col><input type="text" className="text-line small" placeholder={project.timeAllocated[0]} onChange={changeAllocatedByIndex(0)}/></Col>
                         <Col><h5 className="blackHeader"> Define </h5></Col>
-                        <Col><input type="text" className="text-line small" placeholder={project.timeAllocated[1]}/></Col>
+                        <Col><input type="text" className="text-line small" placeholder={project.timeAllocated[1]} onChange={changeAllocatedByIndex(1)}/></Col>
                     </Row>
 
                     <Row className="mt-3">
                         <Col><h5 className="blackHeader"> Sketch </h5></Col>
-                        <Col><input type="text" className="text-line small" placeholder={project.timeAllocated[2]}/></Col>
+                        <Col><input type="text" className="text-line small" placeholder={project.timeAllocated[2]} onChange={changeAllocatedByIndex(2)}/></Col>
                         <Col><h5 className="blackHeader"> Decide </h5></Col>
-                        <Col><input type="text" className="text-line small" placeholder={project.timeAllocated[3]}/></Col>
+                        <Col><input type="text" className="text-line small" placeholder={project.timeAllocated[3]} onChange={changeAllocatedByIndex(3)}/></Col>
                     </Row>
 
                     <Row className="mt-3">
                         <Col><h5 className="blackHeader"> Prototype </h5></Col>
-                        <Col><input type="text" className="text-line small" placeholder={project.timeAllocated[4]}/></Col>
+                        <Col><input type="text" className="text-line small" placeholder={project.timeAllocated[4]} onChange={changeAllocatedByIndex(4)}/></Col>
                         <Col><h5 className="blackHeader"> Validate </h5></Col>
-                        <Col><input type="text" className="text-line small" placeholder={project.timeAllocated[5]}/></Col>
+                        <Col><input type="text" className="text-line small" placeholder={project.timeAllocated[5]} onChange={changeAllocatedByIndex(5)}/></Col>
                     </Row>
                     <Row className="mt-5 justify-content-md-center">
                         <Col md='auto'>
