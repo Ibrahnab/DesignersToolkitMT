@@ -28,7 +28,7 @@ Meteor.methods({
             throw new Meteor.Error('Not authorized');
         }
 
-        ProjectCollection.remove(projectId);
+        ProjectsCollection.remove(projectId);
     },
 
     'projects.addMethod'(projectId,methodId, inPhase, methodNote){

@@ -24,10 +24,12 @@ const EditProject = ({handleClose, project}) => {
 
     const saveEdit = () => {
         Meteor.call('projects.editProject', project._id, newName, newAllocatedTime);
+        handleClose();
     }
 
-    const editProject = ({projectName, timeAllocated}) => {
-        Meteor.call('projects.editProject', "Test project", [20,20,20,20,20,20]);
+    const deleteProject = () => {
+        Meteor.call('projects.remove', project._id);
+        handleClose();
     }
 
     return(
@@ -40,6 +42,11 @@ const EditProject = ({handleClose, project}) => {
                     <Row className="mt-3">
                         <Col><h5 className="blackHeader">Project name</h5></Col>
                         <Col><input type="text" placeholder={project.projectName} onChange={(e) => changeName(e.target.value)} className="text-line" /></Col>
+                        <Col>
+                            <div className="">
+                                <img className="" src="trash_icon3.svg" onClick={deleteProject}></img>
+                            </div>
+                        </Col>
                     </Row>
 
                     <Row className="mt-3">

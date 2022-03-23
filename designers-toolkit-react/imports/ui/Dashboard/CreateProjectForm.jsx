@@ -20,6 +20,7 @@ const CreateProjectForm = ({handleClose}) => {
 
     const createProject = () => {
         Meteor.call('projects.insert', newName, newAllocatedTime);
+        handleClose();
     }
 
     return(
