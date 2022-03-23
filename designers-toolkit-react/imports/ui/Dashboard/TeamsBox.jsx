@@ -13,7 +13,7 @@ const TeamsBox = () =>{
                         <img src="dots.svg"/>
                     </div>
                 </Col>
-            </Row>
+            </Row>  
             <Row>
                 <Col className="justify-content-md-center d-flex">
                     <img className="cardImg" src="projectDiamonds.svg"></img>

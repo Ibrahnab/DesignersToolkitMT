@@ -87,7 +87,23 @@ Meteor.methods({
                 }
             }
         })
+    },
 
+    'projects.editProject'(projectId, projectName, timeAllocated){
+        check(projectId, String);
+        check(timeAllocated, [Number]);
+        check(projectName, String);
+
+        if(!this.userId){
+            throw new Meteor.Error('Not authorized');
+        }
+
+        ProjectsCollection.update(projectId, {
+            $set: {
+                projectName: projectName,
+                timeAllocated, timeAllocated
+            }
+        })
     }
 
 });

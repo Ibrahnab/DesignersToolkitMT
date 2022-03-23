@@ -32,13 +32,13 @@ const CreateProjectForm = ({handleClose}) => {
         <div className="popup-box">
             <div className="box">
             <Container className="CreateProjectForm">
-                <form className="login-form">
+                
                     <Row className="mt-3 justify-content-md-center">
                         <Col md="auto"><h5 className="blackHeader">Create a new project</h5></Col>
                     </Row>
                     <Row className="mt-3">
                         <Col><h5 className="blackHeader">Project name</h5></Col>
-                        <Col><input type="text" class="text-line" /></Col>
+                        <Col><input type="text" className="text-line" /></Col>
                     </Row>
 
                     {/* <Row className="mt-3">
@@ -52,23 +52,23 @@ const CreateProjectForm = ({handleClose}) => {
 
                     <Row className="mt-3">
                         <Col><h5 className="blackHeader"> Understand </h5></Col>
-                        <Col><input type="text" class="text-line small" value="30"/></Col>
+                        <Col><input type="text" className="text-line small" value="30"/></Col>
                         <Col><h5 className="blackHeader"> Define </h5></Col>
-                        <Col><input type="text" class="text-line small" value="30"/></Col>
+                        <Col><input type="text" className="text-line small" value="30"/></Col>
                     </Row>
 
                     <Row className="mt-3">
                         <Col><h5 className="blackHeader"> Sketch </h5></Col>
-                        <Col><input type="text" class="text-line small" value="60"/></Col>
+                        <Col><input type="text" className="text-line small" value="60"/></Col>
                         <Col><h5 className="blackHeader"> Decide </h5></Col>
-                        <Col><input type="text" class="text-line small" value="15"/></Col>
+                        <Col><input type="text" className="text-line small" value="15"/></Col>
                     </Row>
 
                     <Row className="mt-3">
                         <Col><h5 className="blackHeader"> Prototype </h5></Col>
-                        <Col><input type="text" class="text-line small" value="120"/></Col>
+                        <Col><input type="text" className="text-line small" value="120"/></Col>
                         <Col><h5 className="blackHeader"> Validate </h5></Col>
-                        <Col><input type="text" class="text-line small" value="60"/></Col>
+                        <Col><input type="text" className="text-line small" value="60"/></Col>
                     </Row>
                     <Row className="mt-5 justify-content-md-center">
                         <Col md='auto'>
@@ -78,9 +78,6 @@ const CreateProjectForm = ({handleClose}) => {
                             <button className="dashboardSignInButton cancel" type="button" onClick={() => handleClose()}><p className="buttonText cancel">Cancel</p></button>
                         </Col>
                     </Row>
-
-
-                </form>
 
             </Container>
             </div>

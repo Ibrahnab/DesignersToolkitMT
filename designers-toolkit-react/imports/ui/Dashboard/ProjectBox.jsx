@@ -3,13 +3,23 @@ import Row  from "react-bootstrap/Row";
 import Col from 'react-bootstrap/Col';
 import { useTracker } from 'meteor/react-meteor-data';
 import Container from "react-bootstrap/Container";
+import EditProject from "./EditProject";
 
-const ProjectBox = () =>{
+
+
+const ProjectBox = ({project}) =>{
+
+    const [openEdit, setOpenEdit] = useState(false);
+
+    const switchEdit = () => {
+        setOpenEdit(!openEdit);
+    }
+
     return(
         <div className="projectBox">
             <Row>
                 <Col>
-                    <div className="editBtn">
+                    <div className="editBtn" onClick={switchEdit}>
                         <img src="dots.svg"/>
                     </div>
                 </Col>
@@ -25,7 +35,7 @@ const ProjectBox = () =>{
                     <h5 className="blackHeader cardHeader">Master thesis VT22</h5>
                 </Col>
             </Row>
-            
+            {openEdit && <EditProject handleClose={switchEdit} project={project} />}
         </div>
     );
 }

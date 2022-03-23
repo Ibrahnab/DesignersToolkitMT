@@ -28,13 +28,13 @@ const CreateTeamForm = ({handleClose}) => {
         <div className="popup-box">
             <div className="box">
             <Container className="CreateProjectForm">
-                <form onSubmit={submitNewAccount} className="login-form">
+                <form className="login-form">
                     <Row className="mt-3 justify-content-md-center">
                         <Col md="auto"><h5 className="blackHeader">Create a new team</h5></Col>
                     </Row>
                     <Row className="mt-3">
                         <Col><h5 className="blackHeader">Invite user</h5></Col>
-                        <Col><input type="text" class="text-line" /></Col>
+                        <Col><input type="text" className="text-line" /></Col>
                     </Row>
 
                     {/* <Row className="mt-3">

@@ -60,7 +60,7 @@ const SignedInView = () => {
 
     return(
         <Container>
-            <Row d-flex className='signedInHeader'>
+            <Row className='signedInHeader'>
               <Col md="">
                 <h1 className="blackHeader"><em>Welcome back!</em></h1>
               </Col>
@@ -129,10 +129,9 @@ const SignedInView = () => {
                             </Row>
                             </div>
                         </Col>
-                        <Col>
-                            <ProjectBox></ProjectBox>   
+                        <Col> 
                             {projects.map(project => (
-                                <ProjectBox />
+                                <ProjectBox key={project._id} project={project}/>
                             ))}
                         </Col>
                     </Row>
