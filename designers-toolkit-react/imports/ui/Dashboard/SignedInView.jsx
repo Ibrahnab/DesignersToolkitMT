@@ -115,7 +115,7 @@ const SignedInView = () => {
                         </Col>
                     </Row>
                     <Row>
-                        <Col>
+                        <Col className="mt-4">
                             <div className="projectBox" onClick={togglePopup}>
                             <Row>
                                 <Col className="justify-content-md-center d-flex">
@@ -129,11 +129,13 @@ const SignedInView = () => {
                             </Row>
                             </div>
                         </Col>
-                        <Col> 
+                        
                             {projects.map(project => (
-                                <ProjectBox key={project._id} project={project}/>
+                                <Col className="mt-4" key={project._id}> 
+                                    <ProjectBox key={project._id} project={project}/>
+                                </Col>
                             ))}
-                        </Col>
+                        
                     </Row>
                     
                 </Col>
