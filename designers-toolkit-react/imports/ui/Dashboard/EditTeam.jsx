@@ -23,7 +23,7 @@ const EditTeam = ({handleClose, team}) => {
 
             let fetchedUsername = fetchedUser[0].username;
 
-            if(!teamMembers.includes(fetchedUsername)){
+            if(!teamMembers.includes(fetchedUsername) && !(fetchedUsername == team.owner)){
                 
                 if(fetchedUsername == user.username){
                     setErrorMessage("Cannot add yourself");
