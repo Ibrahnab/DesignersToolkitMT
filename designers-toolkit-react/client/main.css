@@ -1112,3 +1112,35 @@ a {
   padding-right:10px;
   
 }
+
+.letterCircle {
+  background: #946ff3;
+  color: #fff;
+  padding: 5px 20px;
+  border-radius: 50%;
+  font-size: 35px;
+}
+
+.hoverLetter{
+  position:absolute;
+}
+
+.avatar-circle {
+  width: 35px;
+  height: 35px;
+  background-color: #946ff3;
+  text-align: center;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+}
+
+.initials {
+  position: relative;
+  top: -6px; /* 25% of parent */
+  font-size: 14px; /* 50% of parent */
+  line-height: 50px; /* 50% of parent */
+  color: #fff;
+  font-family: 'Montserrat';
+  font-weight: bold;
+}

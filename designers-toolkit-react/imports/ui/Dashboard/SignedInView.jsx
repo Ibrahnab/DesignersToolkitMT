@@ -49,6 +49,14 @@ const SignedInView = () => {
         Meteor.call('projects.remove', projectId);
     }
 
+    const teams = useTracker(() => {
+        if(!user){
+            return[]
+        }
+
+        return TeamsCollection.find({members: user.username}).fetch();
+    });
+
     const projects = useTracker(() => {
         if(!user){
             return [];
@@ -83,7 +91,7 @@ const SignedInView = () => {
                         </Col>
                     </Row>
                     <Row>
-                        <Col>
+                        <Col className="mt-4">
                             <div className="teamsBox" onClick={toggleTeamPopup}>
                                 <Row>
                                     <Col className="justify-content-md-center d-flex">
@@ -97,9 +105,16 @@ const SignedInView = () => {
                                 </Row>
                             </div>
                         </Col>
-                        <Col>
+
+                        {teams.map(team => (
+                                <Col className="mt-4" key={team._id}> 
+                                    <TeamsBox key={team._id} team={team}/>
+                                </Col>
+                            ))}
+                        
+                        {/* <Col>
                             <TeamsBox/>
-                        </Col>
+                        </Col> */}
                     </Row>
                 
                 </Col>

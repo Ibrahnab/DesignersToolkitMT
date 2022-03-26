@@ -1,10 +1,12 @@
 import {check} from 'meteor/check';
 import { TeamsCollection } from './TeamsCollection';
+import { useTracker } from 'meteor/react-meteor-data';
 
 Meteor.methods({
     'teams.insert'(teamName, teamMembers) {
         check(teamName, String);
         check(teamMembers, [String]);
+        const user = useTracker(() => Meteor.user());
 
         if(!this.userId){
             throw new Meteor.Error('Not authorized');
@@ -14,10 +16,29 @@ Meteor.methods({
             teamName: teamName,
             createdAt: new Date,
             userId: this.userId,
-            owner: this.user.username,
+            owner: user.username,
             members: teamMembers,
             projects: []
         })
+    },
+
+    'teams.editTeam'(teamId, teamName, teamMembers){
+        check(teamName, String);
+        check(teamMembers, [String]);
+        const user = useTracker(() => Meteor.user());
+
+        if(!this.userId){
+            throw new Meteor.Error('Not authorized');
+        }
+
+        TeamsCollection.update(
+            teamId, {
+                $set : {
+                    teamName: teamName,
+                    members: teamMembers
+                }
+            }
+        )
     },
 
     'teams.remove'(teamId) {

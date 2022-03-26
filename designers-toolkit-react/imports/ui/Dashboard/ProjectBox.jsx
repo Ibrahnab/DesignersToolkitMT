@@ -5,8 +5,6 @@ import { useTracker } from 'meteor/react-meteor-data';
 import Container from "react-bootstrap/Container";
 import EditProject from "./EditProject";
 
-
-
 const ProjectBox = ({project}) =>{
 
     const [openEdit, setOpenEdit] = useState(false);
