@@ -114,7 +114,7 @@ const SignedInView = () => {
 
                         {teams.map(team => (
                                 <Col className="mt-4" key={team._id}> 
-                                    <TeamsBox key={team._id} team={team} selectTeam={selectTeam}/>
+                                    <TeamsBox key={team._id} team={team}/>
                                 </Col>
                             ))}
                         

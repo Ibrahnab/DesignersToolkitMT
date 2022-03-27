@@ -4,8 +4,11 @@ import Col from 'react-bootstrap/Col';
 import { useTracker } from 'meteor/react-meteor-data';
 import Container from "react-bootstrap/Container";
 import EditTeam from "./EditTeam";
+import {connect} from "react-redux";
+import {selectTeam} from "../actions/index";
+import projectReducer from "../reducers/projectReducer";
 
-const TeamsBox = ({team, selectTeam}) =>{
+const TeamsBox = ({team, selectTeam, selectedTeam}) =>{
 
     const [openEdit, setOpenEdit] = useState(false);
     const [selected, setSelected] = useState(false);
@@ -22,8 +25,20 @@ const TeamsBox = ({team, selectTeam}) =>{
         console.log("selected team: " +  team.teamName);
     }
 
+    const selectThisTeam = () => {
+        selectTeam(team._id);
+    }
+
+    const identifySelected = () => {
+        
+        if(selectedTeam == team._id){
+            return ` selected`;
+        }
+        return ``;
+    }
+
     return(
-        <div className="teamsBox" onClick={() => switchSelected()}>
+        <div className={`teamsBox` + identifySelected()} onClick={() => selectThisTeam()}>
             <Row>
                 <Col>
                     <div className="editBtn" onClick={(e) =>switchEdit(e)}>
@@ -54,4 +69,16 @@ const TeamsBox = ({team, selectTeam}) =>{
     );
 }
 
-export default TeamsBox;
+const mapDispatchToProps = dispatch => {
+    return{
+        selectTeam: (teamId) => dispatch(selectTeam(teamId))
+    };
+};
+
+const mapStateToProps = (state) => {
+    return{
+        selectedTeam: state.projectReducer.selectedTeam
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TeamsBox);

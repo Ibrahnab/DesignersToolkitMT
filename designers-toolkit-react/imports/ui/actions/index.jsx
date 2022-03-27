@@ -113,11 +113,17 @@ export const signOut = () => {
 export const selectTeam = (team) => {
     return{
         type: actionTypes.SELECT_TEAM,
+        payload: {
+            team: team
+        }
     }
 }
 
 export const selectProject = (project) => {
     return{
         type: actionTypes.SELECT_PROJECT,
+        payload: {
+            project: project
+        }
     }
 }
