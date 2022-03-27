@@ -1,8 +1,8 @@
 import * as actionTypes from "../actions/types";
 
 const INITIAL_STATE = {
-    selectedTeam: "personal",
-    selectedProject: "0"
+    selectedTeam: "",
+    selectedProject: ""
 };
 
 const projectReducer = (state=INITIAL_STATE, action) => {

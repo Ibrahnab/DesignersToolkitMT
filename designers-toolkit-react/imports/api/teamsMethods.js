@@ -18,6 +18,27 @@ Meteor.methods({
             userId: this.userId,
             owner: user.username,
             members: teamMembers,
+            personal: false,
+            projects: []
+        })
+    },
+
+    'teams.insertPersonal'(teamName, teamMembers) {
+        check(teamName, String);
+        check(teamMembers, [String]);
+        const user = useTracker(() => Meteor.user());
+
+        if(!this.userId){
+            throw new Meteor.Error('Not authorized');
+        }
+
+        TeamsCollection.insert({
+            teamName: teamName,
+            createdAt: new Date,
+            userId: this.userId,
+            owner: teamMembers[0],
+            members: teamMembers,
+            personal: true,
             projects: []
         })
     },

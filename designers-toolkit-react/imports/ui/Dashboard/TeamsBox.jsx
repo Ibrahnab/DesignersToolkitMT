@@ -8,7 +8,7 @@ import {connect} from "react-redux";
 import {selectTeam} from "../actions/index";
 import projectReducer from "../reducers/projectReducer";
 
-const TeamsBox = ({team, selectTeam, selectedTeam}) =>{
+const TeamsBox = ({team, selectTeam, selectedTeam, isPersonal}) =>{
 
     const [openEdit, setOpenEdit] = useState(false);
     const [selected, setSelected] = useState(false);
@@ -40,11 +40,14 @@ const TeamsBox = ({team, selectTeam, selectedTeam}) =>{
     return(
         <div className={`teamsBox` + identifySelected()} onClick={() => selectThisTeam()}>
             <Row>
-                <Col>
-                    <div className="editBtn" onClick={(e) =>switchEdit(e)}>
-                        <img src="dots.svg"/>
-                    </div>
-                </Col>
+                {!isPersonal && 
+                    <Col>
+                        <div className="editBtn" onClick={(e) =>switchEdit(e)}>
+                            <img src="dots.svg"/>
+                        </div>
+                    </Col>
+                }
+                
             </Row>  
             <Row xs={3} md={4} lg={5} className="justify-content-md-center mt-5">
                 {team.members.map(member => (

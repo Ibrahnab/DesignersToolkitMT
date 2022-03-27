@@ -12,7 +12,7 @@ import CreateTeamForm from "./CreateTeamForm";
 import { ProjectsCollection } from '/imports/api/ProjectsCollection';
 import { TeamsCollection } from '/imports/api/TeamsCollection';
 
-const SignedInView = () => {
+const SignedInView = ({selectedTeam, selectedProject}) => {
 
     const user = useTracker(() => Meteor.user());
 
@@ -20,7 +20,8 @@ const SignedInView = () => {
 
     const [createProject, setCreateForm] = useState(false);
     const [createTeam, setCreateTeamForm] = useState(false);
-    const [selectedTeam, setSelectedTeam] = useState("");
+    //const [selectedTeam, setSelectedTeam] = useState("");
+    const [personalExists, setPersonalExists] = useState(TeamsCollection.findOne({owner: user.username, personal: true}) != undefined);
 
     const togglePopup = () => {
         setCreateForm(!createProject);
@@ -30,10 +31,10 @@ const SignedInView = () => {
         setCreateTeamForm(!createTeam);
     }
     
-    const selectTeam = (teamId) => {
-        setSelectedTeam(teamId);
-        console.log(selectedTeam);
-    }
+    // const selectTeam = (teamId) => {
+    //     setSelectedTeam(teamId);
+    //     console.log(selectedTeam);
+    // }
 
     //--------- Teams functions
 
@@ -55,12 +56,41 @@ const SignedInView = () => {
         Meteor.call('projects.remove', projectId);
     }
 
-    const teams = useTracker(() => {
-        if(!user){
+    const personalTeam = useTracker(() => {
+        if(!user) {
             return[]
         }
 
-        return TeamsCollection.find({members: user.username}).fetch();
+        const check = TeamsCollection.findOne({owner: user.username, personal: true});
+        if(check == undefined){
+            console.log("Created a personal team!");
+            Meteor.call('teams.insertPersonal', "My Personal Projects", [user.username])
+            location.reload();
+        }
+
+        return TeamsCollection.find({owner: user.username, personal: true}).fetch();
+    });
+
+    //This function was used to create personal teams for accounts with none, hopefully wont be needed anymore
+    // const tryCreate = () => {
+    //     const check = TeamsCollection.findOne({owner: user.username, personal: true});
+    //     if(check == undefined){
+            
+    //         console.log("Created a personal team!");
+    //         Meteor.call('teams.insertPersonal', "My Personal Projects", [user.username])
+    //         return;
+
+    //     }
+    //     console.log("Exists");
+    //     return;
+    // }
+
+    const teams = useTracker(() => {
+        if(!user){
+            return[]
+        } 
+
+        return TeamsCollection.find({members: user.username, personal: false}).fetch();
     });
 
     const projects = useTracker(() => {
@@ -97,6 +127,7 @@ const SignedInView = () => {
                         </Col>
                     </Row>
                     <Row>
+                        
                         <Col className="mt-4">
                             <div className="teamsBox" onClick={toggleTeamPopup}>
                                 <Row>
@@ -111,10 +142,16 @@ const SignedInView = () => {
                                 </Row>
                             </div>
                         </Col>
+                        
+                        {personalExists &&
+                            <Col className="mt-4" key={personalTeam._id}> 
+                                <TeamsBox key={personalTeam._id} team={personalTeam[0]} isPersonal={true}/>
+                            </Col>
+                        }
 
                         {teams.map(team => (
                                 <Col className="mt-4" key={team._id}> 
-                                    <TeamsBox key={team._id} team={team}/>
+                                    <TeamsBox key={team._id} team={team} isPersonal={false}/>
                                 </Col>
                             ))}
                         
@@ -136,6 +173,7 @@ const SignedInView = () => {
                         </Col>
                     </Row>
                     <Row>
+                        {(selectedTeam != "") &&
                         <Col className="mt-4">
                             <div className="projectBox" onClick={togglePopup}>
                             <Row>
@@ -150,6 +188,7 @@ const SignedInView = () => {
                             </Row>
                             </div>
                         </Col>
+                        }
                         
                             {projects.map(project => (
                                 <Col className="mt-4" key={project._id}> 
@@ -161,6 +200,12 @@ const SignedInView = () => {
                     
                 </Col>
           </Row>
+
+          {/* <Row className="mt-5 justify-content-md-center">
+                <Col md='auto'>
+                    <button className="dashboardSignInButton" onClick={() => tryCreate()}><p className="buttonText">Create Personal</p></button>
+                </Col>
+          </Row> */}
           {createTeam && <CreateTeamForm handleClose={toggleTeamPopup}/>}
           {createProject && <CreateProjectForm handleClose={togglePopup}/>}
           
@@ -169,4 +214,12 @@ const SignedInView = () => {
 
 };
 
-export default SignedInView;
+
+const mapStateToProps = (state) => {
+    return{
+        selectedTeam: state.projectReducer.selectedTeam,
+        selectedProject: state.projectReducer.selectedProject
+    };
+};
+
+export default connect(mapStateToProps)(SignedInView);

@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { LinksCollection } from '/imports/api/links';
 import '/imports/api/projectsMethods';
 import '/imports/api/teamsMethods';
+import { Accounts } from 'meteor/accounts-base';
 
 function insertLink({ title, url }) {
   LinksCollection.insert({title, url, createdAt: new Date()});
@@ -9,8 +10,6 @@ function insertLink({ title, url }) {
 
 const SEED_USERNAME = 'ibr';
 const SEED_PASSWORD = 'password';
-
-
 
 Meteor.startup(() => {
   // If the Links collection is empty, add some data.

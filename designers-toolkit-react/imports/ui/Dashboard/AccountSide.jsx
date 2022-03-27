@@ -8,6 +8,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
+import { TeamsCollection } from '/imports/api/TeamsCollection';
 
 export const AccountSide = () => {
   
@@ -32,7 +33,7 @@ export const AccountSide = () => {
             setErrorMessageLogin(error.reason);
         });
     };
-
+    
     const submitNewAccount = e => {
         e.preventDefault();
 
