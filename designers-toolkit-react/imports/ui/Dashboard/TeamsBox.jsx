@@ -5,29 +5,38 @@ import { useTracker } from 'meteor/react-meteor-data';
 import Container from "react-bootstrap/Container";
 import EditTeam from "./EditTeam";
 
-const TeamsBox = ({team}) =>{
+const TeamsBox = ({team, selectTeam}) =>{
 
     const [openEdit, setOpenEdit] = useState(false);
+    const [selected, setSelected] = useState(false);
 
-    const switchEdit = () => {
+    const switchEdit = (e) => {
+        if(!openEdit){
+            e.stopPropagation();
+        }
         setOpenEdit(!openEdit);
     }
 
+    const switchSelected = () => {
+        setSelected(!selected);
+        console.log("selected team: " +  team.teamName);
+    }
+
     return(
-        <div className="teamsBox">
+        <div className="teamsBox" onClick={() => switchSelected()}>
             <Row>
                 <Col>
-                    <div className="editBtn" onClick={switchEdit}>
+                    <div className="editBtn" onClick={(e) =>switchEdit(e)}>
                         <img src="dots.svg"/>
                     </div>
                 </Col>
             </Row>  
             <Row xs={3} md={4} lg={5} className="justify-content-md-center mt-5">
                 {team.members.map(member => (
-                    <Col className="">
+                    <Col className="" key={member + team._id}>
                         {/* <span className="letterCircle">{member[0].toUpperCase()}</span> */}
-                        <div class="avatar-circle">
-                            <span class="initials">{member[0].toUpperCase()}</span>
+                        <div className="avatar-circle">
+                            <span className="initials">{member[0].toUpperCase()}</span>
                         </div>
                     </Col>
                 ))}

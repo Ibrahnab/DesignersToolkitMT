@@ -9,3 +9,5 @@ export const FLIP_VIEWING_METHOD = "FLIP_VIEWING_METHOD";
 export const FLIP_HAMBURGER = "FLIP_HAMBURGER";
 export const SIGN_IN = "SIGN_IN";
 export const SIGN_OUT = "SIGN_OUT";
+export const SELECT_TEAM = "SELECT_TEAM";
+export const SELECT_PROJECT = "SELECT_PROJECT";

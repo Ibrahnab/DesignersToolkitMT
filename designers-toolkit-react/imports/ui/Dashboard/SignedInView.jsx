@@ -20,6 +20,7 @@ const SignedInView = () => {
 
     const [createProject, setCreateForm] = useState(false);
     const [createTeam, setCreateTeamForm] = useState(false);
+    const [selectedTeam, setSelectedTeam] = useState("");
 
     const togglePopup = () => {
         setCreateForm(!createProject);
@@ -27,6 +28,11 @@ const SignedInView = () => {
 
     const toggleTeamPopup = () => {
         setCreateTeamForm(!createTeam);
+    }
+    
+    const selectTeam = (teamId) => {
+        setSelectedTeam(teamId);
+        console.log(selectedTeam);
     }
 
     //--------- Teams functions
@@ -108,7 +114,7 @@ const SignedInView = () => {
 
                         {teams.map(team => (
                                 <Col className="mt-4" key={team._id}> 
-                                    <TeamsBox key={team._id} team={team}/>
+                                    <TeamsBox key={team._id} team={team} selectTeam={selectTeam}/>
                                 </Col>
                             ))}
                         

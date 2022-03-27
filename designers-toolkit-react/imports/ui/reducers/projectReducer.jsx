@@ -1,28 +1,24 @@
 import * as actionTypes from "../actions/types";
 
 const INITIAL_STATE = {
-
-
+    selectedTeam: "personal",
+    selectedProject: "0"
 };
 
 const projectReducer = (state=INITIAL_STATE, action) => {
     switch(action.type){
-        case actionTypes.SIGN_IN:
+        case actionTypes.SELECT_TEAM:
             return {
-                loggedIn: !state.loggedIn
+                selectedTeam: action.payload
             }
-        case actionTypes.SIGN_OUT:
+        case actionTypes.SELECT_PROJECT:
             return {
-                loggedIn: !state.loggedIn
+                selectedProject: action.payload
             }
-        // case 'SIGN_IN':
-        //     return !state;
-        // case 'SIGN_OUT':
-        //     return !state;
         default: 
             return state;
         
     }
 };
 
-export default loggedReducer;
+export default projectReducer;

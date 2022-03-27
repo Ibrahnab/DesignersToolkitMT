@@ -109,3 +109,15 @@ export const signOut = () => {
         type: actionTypes.SIGN_OUT,
     }
 }
+
+export const selectTeam = (team) => {
+    return{
+        type: actionTypes.SELECT_TEAM,
+    }
+}
+
+export const selectProject = (project) => {
+    return{
+        type: actionTypes.SELECT_PROJECT,
+    }
+}
