@@ -1,12 +1,14 @@
 import counterReducer from './counter'
-import loggedReducer from './isLogged'
+import loggedReducer from './loggedReducer'
 import methodReducer from './methodReducer'
+import projectReducer from './projectReducer'
 import { combineReducers } from 'redux'
 
 const allReducers = combineReducers({
     counter: counterReducer,
-    isLogged: loggedReducer,
-    methodReducer: methodReducer
+    loggedReducer: loggedReducer,
+    methodReducer: methodReducer,
+    projectReducer: projectReducer
 });
 
 export default allReducers

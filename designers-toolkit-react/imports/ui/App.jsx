@@ -2,7 +2,7 @@ import React from 'react';
 import {useSelector} from 'react-redux'
 import {Route, Routes, BrowserRouter as Router } from 'react-router-dom';
 import CurrentPlan from './CurrentPlan/CurrentPlan';
-import {Dashboard} from './Dashboard/Dashboard';
+import Dashboard from './Dashboard/Dashboard';
 import {Introduction} from './Introduction/Introduction';
 import Methodologies from './Methodologies/Methodologies';
 import NavBar from './Shared/NavBar';

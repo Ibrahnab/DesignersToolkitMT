@@ -97,3 +97,33 @@ export const payload = (nr) => {
         payload: nr
     }
 }
+
+export const signIn = () => {
+    return{
+        type: actionTypes.SIGN_IN,
+    }
+}
+
+export const signOut = () => {
+    return{
+        type: actionTypes.SIGN_OUT,
+    }
+}
+
+export const selectTeam = (team) => {
+    return{
+        type: actionTypes.SELECT_TEAM,
+        payload: {
+            team: team
+        }
+    }
+}
+
+export const selectProject = (project) => {
+    return{
+        type: actionTypes.SELECT_PROJECT,
+        payload: {
+            project: project
+        }
+    }
+}
