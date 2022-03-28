@@ -3,13 +3,28 @@ import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import methodReducer from "../reducers/methodReducer";
-import {loadCurrentMethod} from "../actions/index";
+import {adjustPhase, addToSprint, removeFromSprint, loadCurrentMethod, removePhaseFromMethod} from "../actions/index";
 import {connect} from "react-redux";
 import {flipViewingMethod} from "../actions/index";
 import { DEVICE_SIZES } from "react-bootstrap/esm/createUtilityClasses";
+import * as actionTypes from "../actions/types"
+import { useSelector, useDispatch } from "react-redux";
 
 
-const MethodDescriptionPanel = ({methodDescriptionData, viewingMethod, flipViewingMethod}) => {
+const MethodDescriptionPanel = ({methodDescriptionData, viewingMethod, flipViewingMethod, addToSprint, adjustPhase, removeFromSprint, removePhaseFromMethod}) => {
+    isFirst = true;
+    var [phases, setPhases] = useState([]);
+
+    function addThisMethod(phase){
+        adjustPhase(methodDescriptionData.id, `${phase}`);
+        addToSprint(methodDescriptionData.id, `${phase}`);
+        setPhases(phases =[...phases , `${phase}`]);
+    }
+    function removeThisMethod(incPhase){
+        removePhaseFromMethod(methodDescriptionData.id, `${incPhase}`);
+        removeFromSprint(methodDescriptionData.id, `${incPhase}`);
+        setPhases(phases= phases.filter((phase) => (phase !== incPhase)));
+    }
 
     return (
         <div className="methodDescriptionPanel">
@@ -95,20 +110,37 @@ const MethodDescriptionPanel = ({methodDescriptionData, viewingMethod, flipViewi
                     </div>
                 </Col>
             </div>}*/}
+
             <div className="row justify-content-md-center mb-3">
                 <div className="col-sm-6 md-2">
                     {methodDescriptionData.steps.map((step) =>(
                         <div className="row justify-content-md-center">
                             <div className="col-sm-2 mt-3">
-                            <div className="stepCircle"><p className="step-number-text">{methodDescriptionData.steps.indexOf(step)+1}</p></div>
+                                <div className="stepCircle"><p className="step-number-text">{methodDescriptionData.steps.indexOf(step)+1}</p></div>
                             </div>
                             <div className="col mt-3">
-                            <p className="method-step-text">{step}</p>
+                                <p className="method-step-text">{step}</p>
                             </div>
                         </div>
                         ))}
                 </div>
+                <div className="col-sm-3 md-4">
+                    <div className="row justify-content-md-center">
+                        <h5 className="add-method-text">Add method to Sprint</h5>
+                    </div>
+                    <div className="row justify-content-md-center">
+                        {methodDescriptionData.phase.map((phase) => (
+                            <div className="col mt-3">
+                                <button className="method-button" id={phase} onClick={() => {phases.indexOf(`${phase}`) > -1 ? removeThisMethod(phase):addThisMethod(phase)}}>
+                                    <p className="buttonText">{phase}</p>
+                                </button>
+                                <p className="time-left-text">0/60 min used</p>
+                            </div>
+                         ))}
+                    </div>
+                </div>
             </div>
+
             <div className="row justify-content-md-center mb-1">
                 <div className="col-sm-7">
                     <hr></hr>
@@ -119,17 +151,18 @@ const MethodDescriptionPanel = ({methodDescriptionData, viewingMethod, flipViewi
                 {methodDescriptionData.recommendedToolsIcon.map((recommendedToolsIcon) =>(
                     (methodDescriptionData.recommendedToolsIcon.indexOf(recommendedToolsIcon) < 1) //If the first element, else
                     ?<Col md="auto">
-                        <img src={recommendedToolsIcon} className="methodDescriptionIcon mt-2" onClick={()=> window.open(methodDescriptionData.recommendedToolsLink[methodDescriptionData.recommendedToolsIcon.indexOf(recommendedToolsIcon)], "_blank", 'noopener,noreferrer')}/>
+                        <img src={recommendedToolsIcon} className="method-recommended-tool-icon mt-2" onClick={()=> window.open(methodDescriptionData.recommendedToolsLink[methodDescriptionData.recommendedToolsIcon.indexOf(recommendedToolsIcon)], "_blank", 'noopener,noreferrer')}/>
                     </Col>
                     :<Col md="auto" className="method-icons-left-margin">
-                        <img src={recommendedToolsIcon} className="methodDescriptionIcon mt-2" onClick={()=> window.open(methodDescriptionData.recommendedToolsLink[methodDescriptionData.recommendedToolsIcon.indexOf(recommendedToolsIcon)], "_blank", 'noopener,noreferrer')}/>
+                        <img src={recommendedToolsIcon} className="method-recommended-tool-icon mt-2" onClick={()=> window.open(methodDescriptionData.recommendedToolsLink[methodDescriptionData.recommendedToolsIcon.indexOf(recommendedToolsIcon)], "_blank", 'noopener,noreferrer')}/>
                     </Col>
                 ))}
             </div>
             <div className="row justify-content-md-center mb-1">
                 {methodDescriptionData.recommendedToolsDifficulty.map((recommendedToolsDifficulty) =>(
-                    (methodDescriptionData.recommendedToolsDifficulty.indexOf(recommendedToolsDifficulty) < 1) //If the first element, else
+                    (methodDescriptionData.recommendedToolsDifficulty.indexOf(recommendedToolsDifficulty) < 1 && isFirst) //If the first element, else
                     ?<Col md="auto">
+                        {isFirst = false}
                         <img src={recommendedToolsDifficulty} className="methodDiffIcon mt-2"/>
                     </Col>
                     :<Col md="auto" className="method-icons-left-margin">
@@ -154,6 +187,11 @@ const MethodDescriptionPanel = ({methodDescriptionData, viewingMethod, flipViewi
                     </div>
                 </Col>
             </div>
+            <div className="row justify-content-md-center mb-1">
+                <div className="col-sm-2 mt-3">
+                    <button className="dashboardSignInButton"><p className="buttonText">Save</p></button>
+                </div>
+            </div>
         </div>
     )
     
@@ -169,7 +207,12 @@ const MethodDescriptionPanel = ({methodDescriptionData, viewingMethod, flipViewi
 const mapDispatchToProps = dispatch => {
     return {
         loadCurrentMethod: (id) => dispatch(loadCurrentMethod(id)),
-        flipViewingMethod: () => dispatch(flipViewingMethod())
+        flipViewingMethod: () => dispatch(flipViewingMethod()),
+        addToSprint: (id, itemPhase) => dispatch(addToSprint(id, itemPhase)),
+        adjustPhase: (id, itemPhase) => dispatch(adjustPhase(id, itemPhase)),
+        removeFromSprint: (id, itemPhase) => dispatch(removeFromSprint(id, itemPhase)),
+        removePhaseFromMethod:(id, itemPhase) => dispatch(removePhaseFromMethod(id ,itemPhase))
+
     };
 };
 

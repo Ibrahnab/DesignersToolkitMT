@@ -1007,3 +1007,59 @@ a {
 .note-textarea:focus{
   outline: none;
 }
+.time-left-text{
+  display: inline-block;
+  font-size: 16px;
+  font-family: "Montserrat";
+  padding-top: 2%;
+  margin-left: 15px;
+}
+.method-button{
+  width: 151px;
+  height: 31px;
+  background-color: white;
+  border-radius: 40px;
+  border: none;
+  transition-duration: 300ms;
+}
+.method-button:hover{
+  transform:scale(1.05,1.05);
+  -webkit-transform:scale(1.05,1.05);
+  -moz-transform:scale(1.05,1.05);
+  transition-duration: 300ms;
+}
+#understand{
+  background-color: #ABBF4A;
+}
+#define{
+  background-color: #85953A;
+}
+#sketch{
+  background-color: #3076DF;
+}
+#decide{
+  background-color: #8C3A9D;
+}
+#prototype{
+  background-color: #FF5F5F;
+}
+#validate{
+  background-color: #E52525;
+}
+.add-method-text{
+  font-style: bold;
+  font-family: "Montserrat";
+  padding-top: 12px;
+  margin-top: 12px;
+  margin-bottom: 15px;
+}
+.method-recommended-tool-icon{
+  width:50px;
+  height:50px;
+}
+.method-recommended-tool-icon:hover{
+  transform:scale(1.15,1.15);
+  -webkit-transform:scale(1.15,1.15);
+  -moz-transform:scale(1.15,1.15);
+  transition-duration: 300ms;
+}

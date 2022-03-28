@@ -3,6 +3,7 @@ import * as actionTypes from "../actions/types"
 const INITIAL_STATE = {
     isHamburgerOpen: false,
     viewingMethod: false,
+
     currentMethod: [{
         id: "2",
             name: "Usability test",
@@ -167,7 +168,7 @@ const INITIAL_STATE = {
             timeRange: "2-3h",
             recommendedToolsIcon: ["miro_icon.svg", "forms_icon.svg"],
             recommendedToolsDifficulty: ["diff_1.png", "diff_1.png"],
-            recommendedToolsLink: ["https://miro.com/", "http://figma.com/"],
+            recommendedToolsLink: ["https://miro.com/", "https://google.se/intl/sv/forms/about/"],
         },
         {
             id: "8",
@@ -527,6 +528,7 @@ const INITIAL_STATE = {
     ], //id, title, de scr, price, img
         suggestedMethods:[],
         currentSprintMethods: [], //id, title, descr, price, img, qty
+        //noCopy: true,
 };
 
 const methodReducer = (state = INITIAL_STATE, action) => {
@@ -537,21 +539,34 @@ const methodReducer = (state = INITIAL_STATE, action) => {
             // const inSprint = state.sprint.find((method) => method.id === action.payload.id ? true : false)
             const methodToBeCheck = state.methods.find((meth) => meth.id === action.payload.id);
             methodToBeCheck.inPhase = methodToBeCheck.inPhase.filter((phase) => phase === action.payload.phase);
-            //console.log(methodToBeCheck);
+            methodToBeCheck.inPhase.push(action.payload.phase);
 
-            /*methodToBeCheck.inPhase.push(action.payload.phase);*/
             return {
-                // ...state,
-                // cart: inSprint ? state.sprint.map(meth => 
-                //     meth.id === action.payload
-                //     ? { ...method, } )
-
-
-                
                 ...state,
                 currentSprintMethods: [...state.currentSprintMethods , {...methodToBeCheck}]
 
             }
+
+            /*state.currentSprintMethods.map((meth) => (meth.id === methodToBeCheck.id && meth.phase === methodToBeCheck.phase) === undefined) ? noCopy = false : noCopy = true
+                if(noCopy){
+                    console.log("111");
+                    return {
+                    // ...state,
+                    // cart: inSprint ? state.sprint.map(meth => 
+                    //     meth.id === action.payload
+                    //     ? { ...method, } )
+                    ...state,
+                    currentSprintMethods: [...state.currentSprintMethods , {...methodToBeCheck}]
+                    }
+                }
+                else{
+                    console.log("222");
+                    return {
+                        ...state,
+                        currentSprintMethods: [...state.currentSprintMethods]
+        
+                    }
+                }*/
         case actionTypes.REMOVE_FROM_SPRINT:
             const phaseMethod = state.currentSprintMethods.find((meth) => meth.id === action.payload.id 
             && meth.inPhase.indexOf(action.payload.phase) >-1);
@@ -562,23 +577,23 @@ const methodReducer = (state = INITIAL_STATE, action) => {
                 currentSprintMethods: state.currentSprintMethods.filter((meth) => meth !==phaseMethod)
             };
 
-            case actionTypes.SHOW_CURRENT_METHOD:
+        case actionTypes.SHOW_CURRENT_METHOD:
             const methoda = state.methods.find((meth) => meth.id === action.payload.id);
             return{
                 ...state,
                 currentMethod: [{...methoda}]
             }
 
-            case actionTypes.SUGGEST_METHODS:
-                var theMethods = state.methods.filter((meth) => (meth.phase.includes(action.payload.phase)));
-                const random1 = Math.floor(Math.random() * theMethods.length);
-                const firstMethod = theMethods[random1];
-                theMethods = theMethods.filter((meth) => meth.id !== firstMethod.id);
-                const random2 = Math.floor(Math.random() * theMethods.length);
-                const secondMethod = theMethods[random2];
-                theMethods = theMethods.filter((meth) => meth.id !== secondMethod.id);
-                const random3 = Math.floor(Math.random() * theMethods.length);
-                const randomisedMethods = [firstMethod, secondMethod, theMethods[random3]];
+        case actionTypes.SUGGEST_METHODS:
+            var theMethods = state.methods.filter((meth) => (meth.phase.includes(action.payload.phase)));
+            const random1 = Math.floor(Math.random() * theMethods.length);
+            const firstMethod = theMethods[random1];
+            theMethods = theMethods.filter((meth) => meth.id !== firstMethod.id);
+            const random2 = Math.floor(Math.random() * theMethods.length);
+            const secondMethod = theMethods[random2];
+            theMethods = theMethods.filter((meth) => meth.id !== secondMethod.id);
+            const random3 = Math.floor(Math.random() * theMethods.length);
+            const randomisedMethods = [firstMethod, secondMethod, theMethods[random3]];
             return {
                 ...state,
                 suggestedMethods: randomisedMethods
