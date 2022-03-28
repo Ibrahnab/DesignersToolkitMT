@@ -4,8 +4,10 @@ import Col from 'react-bootstrap/Col';
 import { useTracker } from 'meteor/react-meteor-data';
 import Container from "react-bootstrap/Container";
 import EditProject from "./EditProject";
+import {connect} from "react-redux";
+import {selectProject} from "../actions/index";
 
-const ProjectBox = ({project}) =>{
+const ProjectBox = ({project, selectProject, selectedProject, selectedTeam}) =>{
 
     const [openEdit, setOpenEdit] = useState(false);
 
@@ -13,8 +15,21 @@ const ProjectBox = ({project}) =>{
         setOpenEdit(!openEdit);
     }
 
+    const selectThisProject = () => {
+        selectProject(project._id);
+    }
+
+    const identifySelected = () => {
+        
+        if(selectedProject == project._id){
+            console.log("selectedProject: " + selectedProject);
+            return ` selected`;
+        }
+        return ``;
+    }
+
     return(
-        <div className="projectBox">
+        <div className={`projectBox` + identifySelected()} onClick={() => selectThisProject()}>
             <Row>
                 <Col>
                     <div className="editBtn" onClick={switchEdit}>
@@ -38,4 +53,17 @@ const ProjectBox = ({project}) =>{
     );
 }
 
-export default ProjectBox;
+const mapDispatchToProps = dispatch => {
+    return{
+        selectProject: (projectId) => dispatch(selectProject(projectId))
+    };
+};
+
+const mapStateToProps = (state) => {
+    return{
+        selectedTeam: state.projectReducer.selectedTeam,
+        selectedProject: state.projectReducer.selectedProject
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectBox);

@@ -32,7 +32,7 @@ const TeamsBox = ({team, selectTeam, selectedTeam, isPersonal}) =>{
     const identifySelected = () => {
         
         if(selectedTeam == team._id){
-            console.log(selectedTeam);
+            console.log("selected team: " + selectedTeam);
             return ` selected`;
         }
         return ``;

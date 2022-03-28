@@ -8,7 +8,7 @@ import HamburgerMenu from "./HamburgerMenu"
 import { flipHamburger } from "../actions";
 
 
-const NavBar = ({currentSprintMethods, isHamburgerOpen, flipHamburger}) => {
+const NavBar = ({currentSprintMethods, isHamburgerOpen, flipHamburger,selectedProject, selectedTeam}) => {
 
 const [sprintCount, setSprintCount] = useState(0);
 const [barlock, setBarLock] = useState()
@@ -66,7 +66,12 @@ const [burgerState, changeState] = useState(false)
                 <div className={ 'underscore' + (getActiveRoute() == "/currentplan" ? " activated" : "")}></div>
               </NavLink>
             </Col>
-            <Col className="d-flex" md="auto"><div className="searchBtn" onClick={()=> {changeState(!burgerState); flipHamburger()}}><img src="searchIcon.svg"></img></div></Col>
+            <Col className="d-flex" md="auto"><div className="searchBtn" onClick={()=> {changeState(!burgerState); flipHamburger()}}>
+              <img src="searchIcon.svg"></img></div>
+            </Col>
+            {/* <Col>
+              <p className="whiteHeader">{selectedTeam}</p>
+            </Col> */}
           </Row>
         </Container>
 
@@ -86,7 +91,9 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = (state) => {
   return{
     currentSprintMethods: state.methodReducer.currentSprintMethods,
-    isHamburgerOpen: state.methodReducer.isHamburgerOpen
+    isHamburgerOpen: state.methodReducer.isHamburgerOpen,
+    selectedTeam: state.projectReducer.selectedTeam,
+    selectedProject: state.projectReducer.selectedProject
   };
 };
 
