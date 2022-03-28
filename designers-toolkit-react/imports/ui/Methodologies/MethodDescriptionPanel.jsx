@@ -6,14 +6,19 @@ import methodReducer from "../reducers/methodReducer";
 import {adjustPhase, addToSprint, removeFromSprint, loadCurrentMethod, removePhaseFromMethod} from "../actions/index";
 import {connect} from "react-redux";
 import {flipViewingMethod} from "../actions/index";
+import { useTracker } from 'meteor/react-meteor-data';
 import { DEVICE_SIZES } from "react-bootstrap/esm/createUtilityClasses";
 import * as actionTypes from "../actions/types"
 import { useSelector, useDispatch } from "react-redux";
+import { ProjectsCollection } from '/imports/api/ProjectsCollection';
+import MethodComment from "./MethodComment";
 
 
-const MethodDescriptionPanel = ({methodDescriptionData, viewingMethod, flipViewingMethod, addToSprint, adjustPhase, removeFromSprint, removePhaseFromMethod}) => {
+const MethodDescriptionPanel = ({methodDescriptionData, viewingMethod, flipViewingMethod, addToSprint, adjustPhase, removeFromSprint, removePhaseFromMethod, selectedProject}) => {
     isFirst = true;
     var [phases, setPhases] = useState([]);
+    const user = useTracker(() => Meteor.user());
+    const [comment, setCommentValue] = useState("");
 
     function addThisMethod(phase){
         adjustPhase(methodDescriptionData.id, `${phase}`);
@@ -25,6 +30,39 @@ const MethodDescriptionPanel = ({methodDescriptionData, viewingMethod, flipViewi
         removeFromSprint(methodDescriptionData.id, `${incPhase}`);
         setPhases(phases= phases.filter((phase) => (phase !== incPhase)));
     }
+
+    const editComment = e => {
+        setCommentValue(e);
+    }
+
+    const saveComment = (newComment) =>{
+        console.log("Saving to method id:  " + methodDescriptionData.id);
+        Meteor.call('projects.addNoteToMethod', selectedProject, methodDescriptionData.id, newComment);
+    }
+
+    const project = useTracker(() => {
+        if(!user){
+            return [];
+        }
+
+        const found = ProjectsCollection.find({_id: selectedProject}).fetch();
+
+        const allComments = found[0].methodsUsed.filter(object => object.methodId == methodDescriptionData.id);
+        
+        if(allComments.length > 0) {
+            const latestComment = allComments[allComments.length-1];
+            console.log(latestComment.methodNote);
+            return latestComment.methodNote;
+            
+            
+        }
+        else{
+            console.log("Write your notes here");
+        }
+
+        return "Write your notes here";
+
+    });
 
     return (
         <div className="methodDescriptionPanel">
@@ -176,22 +214,25 @@ const MethodDescriptionPanel = ({methodDescriptionData, viewingMethod, flipViewi
                     <h5 className="methodDescriptionHeader">Team Notes</h5>
                 </div>
             </div>
-            <div className="row justify-content-md-center mb-6">
+            {/* <div className="row justify-content-md-center mb-6">
                 <Col md="auto"> 
                     <div className="team-note">
                         <textarea className="note-textarea"
                             rows="20"
                             cols="10"
                             placeholder="Type to add a note..."
+                            onChange={(e) => editComment(e.target.value)}
                         ></textarea>
                     </div>
                 </Col>
+                <MethodComment comment={project} saveComment={saveComment}/>
             </div>
             <div className="row justify-content-md-center mb-1">
                 <div className="col-sm-2 mt-3">
-                    <button className="dashboardSignInButton"><p className="buttonText">Save</p></button>
+                    <button className="dashboardSignInButton" onClick={() => saveComment()}><p className="buttonText">Save</p></button>
                 </div>
-            </div>
+            </div> */}
+            <MethodComment comment={project} saveComment={saveComment}/>
         </div>
     )
     
@@ -216,35 +257,11 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-/*<div className="row justify-content-md-center mt-3">
-                <Col md="auto" className="adjust-col-width">
-                    <div className="triangle-understand">
-                        <div classNmae="row ">
-                            <div className="col">
-                                <div className="triangle-smaller-understand"/>
-                            </div>
-                        </div>
-                    </div>
-                </Col>
-                <Col md="auto" className="adjust-col-width">
-                    <div className="triangle-define"></div>
-                </Col>
-                <Col md="auto" className="adjust-col-width">
-                    <div className="triangle-sketch"></div>
-                </Col>
-                <Col md="auto" className="adjust-col-width">
-                    <div className="triangle-decide"></div>
-                </Col>
-                <Col md="auto" className="adjust-col-width">
-                    <div className="triangle-prototype"></div>
-                </Col>
-                <Col md="auto" className="adjust-col-width">
-                    <div className="triangle-validate"></div>
-                </Col>
-            </div>*/
 const mapStateToProps = (state) => {
     return {
-      viewingMethod: state.methodReducer.viewingMethod
+      viewingMethod: state.methodReducer.viewingMethod,
+      selectedTeam: state.projectReducer.selectedTeam,
+      selectedProject: state.projectReducer.selectedProject
     };
   };
 

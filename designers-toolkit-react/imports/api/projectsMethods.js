@@ -41,7 +41,7 @@ Meteor.methods({
 
     'projects.addMethod'(projectId,methodId, inPhase, methodNote){
         check(projectId, String);
-        check(methodId, Number);
+        check(methodId, String);
         check(inPhase, String);
         check(methodNote, String);
 
@@ -80,7 +80,7 @@ Meteor.methods({
 
     'projects.addNoteToMethod'(projectId, methodId, note){
         check(projectId, String);
-        check(methodId, Number);
+        check(methodId, String);
         check(note, String);
 
         if(!this.userId){
@@ -88,7 +88,7 @@ Meteor.methods({
         }
 
         ProjectsCollection.update(projectId, {
-            $set: {
+            $push: {
                 methodsUsed: {
                     methodId: methodId,
                     methodNote: note

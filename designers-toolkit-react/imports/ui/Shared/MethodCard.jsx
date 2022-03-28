@@ -10,7 +10,7 @@ import { Link, useLocation, NavLink } from "react-router-dom";
 import {setMethodID} from "../Methodologies/Methodologies";
 import Form from "react-bootstrap/Form";
 
-const MethodCard = ({methodData, addToSprint, adjustPhase, removeFromSprint, showCurrentMethod, flipViewingMethod, viewingMethod, removePhaseFromMethod, isinPlan, underPhase}) => {
+const MethodCard = ({methodData, addToSprint, adjustPhase, removeFromSprint, showCurrentMethod, flipViewingMethod, viewingMethod, removePhaseFromMethod, isinPlan, underPhase, selectedProject}) => {
 
     var [phases, setPhases] = useState([])
 
@@ -18,6 +18,10 @@ const MethodCard = ({methodData, addToSprint, adjustPhase, removeFromSprint, sho
         adjustPhase(methodData.id, `${phase}`);
         addToSprint(methodData.id, `${phase}`);
         setPhases(phases =[...phases , `${phase}`]);
+        if(selectedProject != ""){
+            console.log("inserted into project" + selectedProject);
+            Meteor.call('projects.addMethod', selectedProject, methodData.id, `${phase}`, "");
+        }
         //console.log(phases);
     }
     function removeThisMethod(incPhase){
@@ -146,7 +150,8 @@ const MethodCard = ({methodData, addToSprint, adjustPhase, removeFromSprint, sho
 
 const mapStateToProps = (state) => {
     return {
-      viewingMethod: state.methodReducer.viewingMethod
+      viewingMethod: state.methodReducer.viewingMethod,
+      selectedProject: state.projectReducer.selectedProject
     };
   };
 
@@ -158,22 +163,6 @@ const mapDispatchToProps = dispatch => {
         showCurrentMethod:(id,itemPhase) => dispatch(showCurrentMethod(id,itemPhase)),
         removePhaseFromMethod:(id,itemPhase) => dispatch(removePhaseFromMethod(id,itemPhase)),
         flipViewingMethod: () => dispatch(flipViewingMethod())
-
-/*<div className={`phaseBtn + ${phase}`}>
-                            <p className="whiteHeader phase" 
-                            onClick={()=>{adjustPhase(methodData.id, `${phase}`);addToSprint(methodData.id, {phase})}
-                            }>{phase}</p>
-                            </div>
-                            
-                            
-                            {methodData.currentPhase !== "none" && (
-                        <div className={`phaseBtn none`}>
-                        <p className="whiteHeader phase" 
-                        onClick={()=>{adjustPhase(methodData.id, "none");removeFromSprint(methodData.id)
-                        }}>remove</p>
-                    </div>
-                    )}*/
-        
     };
 };
 
