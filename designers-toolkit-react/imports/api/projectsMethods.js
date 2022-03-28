@@ -1,9 +1,10 @@
 import {check} from 'meteor/check';
 import { ProjectsCollection } from './ProjectsCollection';
+import { TeamsCollection } from './TeamsCollection';
 import { useTracker } from 'meteor/react-meteor-data';
 
 Meteor.methods({
-    'projects.insert'(projectName, timeAllocated) {
+    'projects.insert'(teamId, projectName, timeAllocated) {
         check(projectName, String);
         check(timeAllocated, [Number]);
         const user = useTracker(() => Meteor.user());
@@ -12,15 +13,22 @@ Meteor.methods({
             throw new Meteor.Error('Not authorized');
         }
 
-        ProjectsCollection.insert({
+        const projectId = ProjectsCollection.insert({
             projectName: projectName,
             createdAt: new Date,
             userId: this.userId,
             owner: user.username,
+            teamId: teamId,
             methodsUsed: [],
             timeAllocated: timeAllocated,
             timeUsed: [0,0,0,0,0,0]
         })
+
+        // TeamsCollection.update(teamId, {
+        //     $push: {
+        //         projects: projectId
+        //     }
+        // })
     },
 
     'projects.remove'(projectId) {

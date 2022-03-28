@@ -98,7 +98,7 @@ const SignedInView = ({selectedTeam, selectedProject}) => {
             return [];
         }
 
-        return ProjectsCollection.find({owner: user.username}).fetch();
+        return ProjectsCollection.find({teamId: selectedTeam}).fetch();
 
     });
 

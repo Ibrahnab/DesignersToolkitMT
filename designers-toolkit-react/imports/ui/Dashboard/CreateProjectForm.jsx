@@ -3,8 +3,11 @@ import Row  from "react-bootstrap/Row";
 import Col from 'react-bootstrap/Col';
 import { useTracker } from 'meteor/react-meteor-data';
 import Container from "react-bootstrap/Container";
+import {connect} from "react-redux";
+import {selectTeam} from "../actions/index";
+import projectReducer from "../reducers/projectReducer";
 
-const CreateProjectForm = ({handleClose}) => {
+const CreateProjectForm = ({handleClose, selectedTeam}) => {
 
     const [newName, changeName] = useState("Project name");
     const [newAllocatedTime, changeAllocated] = useState([30,30,60,15,120,60]);
@@ -19,7 +22,8 @@ const CreateProjectForm = ({handleClose}) => {
     }
 
     const createProject = () => {
-        Meteor.call('projects.insert', newName, newAllocatedTime);
+        Meteor.call('projects.insert', selectedTeam, newName, newAllocatedTime);
+        console.log("inserted into: " + selectedTeam)
         handleClose();
     }
 
@@ -80,4 +84,11 @@ const CreateProjectForm = ({handleClose}) => {
     );
 };
 
-export default CreateProjectForm;
+const mapStateToProps = (state) => {
+    return{
+        selectedTeam: state.projectReducer.selectedTeam,
+        selectedProject: state.projectReducer.selectedProject
+    };
+};
+
+export default connect(mapStateToProps)(CreateProjectForm);

@@ -99,4 +99,19 @@ Meteor.methods({
             }
         })
     },
+
+    'teams.addProject'(teamId, projectId){
+        check(teamId, String);
+        check(memberName, String);
+
+        if(!this.userId){
+            throw new Meteor.Error('Not authorized');
+        }
+
+        TeamsCollection.update(teamId, {
+            $push: {
+                projects: projectId
+            }
+        })
+    }
 });
