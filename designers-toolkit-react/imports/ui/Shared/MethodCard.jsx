@@ -9,8 +9,11 @@ import DropDownMenu from "./DropDownMenu"
 import { Link, useLocation, NavLink } from "react-router-dom";
 import {setMethodID} from "../Methodologies/Methodologies";
 import Form from "react-bootstrap/Form";
+import { useTracker } from 'meteor/react-meteor-data';
 
 const MethodCard = ({methodData, addToSprint, adjustPhase, removeFromSprint, showCurrentMethod, flipViewingMethod, viewingMethod, removePhaseFromMethod, isinPlan, underPhase, selectedProject}) => {
+
+    const user = useTracker(() => Meteor.user());
 
     var [phases, setPhases] = useState([])
 
@@ -22,7 +25,7 @@ const MethodCard = ({methodData, addToSprint, adjustPhase, removeFromSprint, sho
             console.log("inserted into project" + selectedProject);
             Meteor.call('projects.addMethod', selectedProject, methodData.id, `${phase}`, "");
         }
-        //console.log(phases);
+        console.log(user);
     }
     function removeThisMethod(incPhase){
         removePhaseFromMethod(methodData.id, `${incPhase}`);

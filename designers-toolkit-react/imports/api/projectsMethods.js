@@ -49,12 +49,30 @@ Meteor.methods({
             throw new Meteor.Error('Not authorized');
         }
 
+        //Returns the project as an object: {_id: x, projectName: y etc..}
+        const project = ProjectsCollection.findOne({_id: projectId});
+
+        //Should return the object of the used method in an array: [{methodId: x, etc..}]
+        const methods = project.methodsUsed.filter(e => e.methodId === methodId);
+
+        if(methods.length > 0){
+            
+            console.log("methods: " + methods);
+
+            ProjectsCollection.update(
+                {_id: projectId}, 
+                { $push: {"methodsUsed.$[element].inPhases": inPhase}}, 
+                {arrayFilters:[{"element.methodId": methodId}]}
+            )
+            return;
+        }
+
         ProjectsCollection.update(projectId, {
             $push: {
                 methodsUsed: {
                     methodId: methodId,
-                    inPhase: inPhase,
-                    methodNote: methodNote
+                    inPhases: [],
+                    methodNote: ""
                 }
             }
         })
@@ -68,14 +86,12 @@ Meteor.methods({
         if(!this.userId){
             throw new Meteor.Error('Not authorized');
         }
-
-        ProjectsCollection.update(projectId, {
-            $pull: {
-                methodsUsed: {
-                    inPhase: fromPhase
-                }
-            }
-        })
+        
+        ProjectsCollection.update(
+            {_id: projectId}, 
+            { $pull: {"methodsUsed.$[element].inPhases": fromPhase}}, 
+            {arrayFilters:[{"element.methodId": methodId}]}
+        )
     },
 
     'projects.addNoteToMethod'(projectId, methodId, note){
@@ -87,10 +103,28 @@ Meteor.methods({
             throw new Meteor.Error('Not authorized');
         }
 
+        //Returns the project as an object: {_id: x, projectName: y etc..}
+        const project = ProjectsCollection.findOne({_id: projectId});
+
+        //Should return the object of the used method in an array: [{methodId: x, etc..}]
+        const methods = project.methodsUsed.filter(e => e.methodId === methodId);
+
+        if(methods.length > 0){
+            
+            console.log("methods: " + methods);
+            ProjectsCollection.update(
+                {_id: projectId}, 
+                { $set: {"methodsUsed.$[element].methodNote": note}}, 
+                {arrayFilters:[{"element.methodId": methodId}]}
+            )
+            return;
+        }
+
         ProjectsCollection.update(projectId, {
             $push: {
                 methodsUsed: {
                     methodId: methodId,
+                    inPhases: [],
                     methodNote: note
                 }
             }

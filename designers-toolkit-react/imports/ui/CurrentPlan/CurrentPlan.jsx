@@ -10,9 +10,10 @@ import { connect } from "react-redux";
 import {SuggestionsBox}  from "./SuggestionsBox";
 
 const CurrentPlan = ({currentSprintMethods, suggestedMethods, suggestMethods}) => {
+    
+    //Used for suggest methods popup
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-
     const [currentPhase, setCurrentPhase] = useState("");
     const [wobble, setWobble] = useState("0");
 
