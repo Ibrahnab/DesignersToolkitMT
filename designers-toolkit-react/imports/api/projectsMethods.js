@@ -23,12 +23,6 @@ Meteor.methods({
             timeAllocated: timeAllocated,
             timeUsed: [0,0,0,0,0,0]
         })
-
-        // TeamsCollection.update(teamId, {
-        //     $push: {
-        //         projects: projectId
-        //     }
-        // })
     },
 
     'projects.remove'(projectId) {
@@ -56,9 +50,8 @@ Meteor.methods({
         const methods = project.methodsUsed.filter(e => e.methodId === methodId);
 
         if(methods.length > 0){
-            
-            console.log("methods: " + methods);
 
+            //Finds the specific object in the methods array and pushes the method into the phase into it
             ProjectsCollection.update(
                 {_id: projectId}, 
                 { $push: {"methodsUsed.$[element].inPhases": inPhase}}, 
@@ -111,7 +104,6 @@ Meteor.methods({
 
         if(methods.length > 0){
             
-            console.log("methods: " + methods);
             ProjectsCollection.update(
                 {_id: projectId}, 
                 { $set: {"methodsUsed.$[element].methodNote": note}}, 
