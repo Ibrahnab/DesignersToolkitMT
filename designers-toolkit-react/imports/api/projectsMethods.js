@@ -64,7 +64,7 @@ Meteor.methods({
             $push: {
                 methodsUsed: {
                     methodId: methodId,
-                    inPhases: [],
+                    inPhases: [inPhase],
                     methodNote: ""
                 }
             }
