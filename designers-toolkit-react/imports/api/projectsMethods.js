@@ -73,7 +73,7 @@ Meteor.methods({
 
     'projects.removeMethod'(projectId, methodId, fromPhase){
         check(projectId, String);
-        check(methodId, Number);
+        check(methodId, String);
         check(fromPhase, String);
 
         if(!this.userId){

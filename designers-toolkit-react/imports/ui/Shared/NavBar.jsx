@@ -6,9 +6,12 @@ import Col from 'react-bootstrap/Col';
 import { connect } from "react-redux";
 import HamburgerMenu from "./HamburgerMenu"
 import { flipHamburger } from "../actions";
+import { useTracker } from 'meteor/react-meteor-data';
 
 
 const NavBar = ({currentSprintMethods, isHamburgerOpen, flipHamburger,selectedProject, selectedTeam}) => {
+
+const user = useTracker(() => Meteor.user());
 
 const [sprintCount, setSprintCount] = useState(0);
 const [barlock, setBarLock] = useState()

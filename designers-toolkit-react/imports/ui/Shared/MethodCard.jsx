@@ -18,20 +18,31 @@ const MethodCard = ({methodData, addToSprint, adjustPhase, removeFromSprint, sho
     var [phases, setPhases] = useState([])
 
     function addThisMethod(phase){
+
+        if(selectedProject != "" && user){
+            console.log("inserted into project" + selectedProject);
+            Meteor.call('projects.addMethod', selectedProject, methodData.id, `${phase}`, "");
+            return;
+        }
+
         adjustPhase(methodData.id, `${phase}`);
         addToSprint(methodData.id, `${phase}`);
         setPhases(phases =[...phases , `${phase}`]);
-        if(selectedProject != ""){
-            console.log("inserted into project" + selectedProject);
-            Meteor.call('projects.addMethod', selectedProject, methodData.id, `${phase}`, "");
-        }
+        
         console.log(user);
     }
     function removeThisMethod(incPhase){
+        
+        if(selectedProject != "" && user){
+            console.log("removed method from project" + selectedProject);
+            Meteor.call('projects.removeMethod', selectedProject, methodData.id, `${incPhase}`, "");
+            return;
+        }
+        
         removePhaseFromMethod(methodData.id, `${incPhase}`);
         removeFromSprint(methodData.id, `${incPhase}`);
         setPhases(phases= phases.filter((phase) => (phase !== incPhase)));
-        //console.log(phases);
+
     }
   
     const [isActive, setIsActive] = useState(false);
