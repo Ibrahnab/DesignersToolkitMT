@@ -68,6 +68,14 @@ img.logoImg {
   max-height:55px;
   width: auto;
   height: auto;
+  transition-duration: 300ms;
+}
+
+img.logoImg:hover{
+  transform:scale(1.05,1.05);
+  -webkit-transform:scale(1.05,1.05);
+  -moz-transform:scale(1.05,1.05);
+  transition-duration: 300ms;
 }
 
 .navLink {
@@ -905,8 +913,13 @@ a {
   border-radius: 5px;
   margin-bottom:10px;
   margin-right:10px;
+  transition-duration: 300ms;
 }
 .searchBtn:hover{
+  transform:scale(1.05,1.05);
+  -webkit-transform:scale(1.05,1.05);
+  -moz-transform:scale(1.05,1.05);
+  transition-duration: 300ms;
   cursor: pointer;
 }
 
