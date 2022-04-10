@@ -118,7 +118,7 @@ const SignedInView = ({selectedTeam, selectedProject}) => {
               </Col>
             </Row>
           <hr></hr>
-          <Row>
+          <Row className="mb-5">
                 {/* Teams */}
                 <Col>
                     <Row>
