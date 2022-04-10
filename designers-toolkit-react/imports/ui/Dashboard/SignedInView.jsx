@@ -189,12 +189,18 @@ const SignedInView = ({selectedTeam, selectedProject}) => {
                             </div>
                         </Col>
                         }
+
+                        {(selectedTeam === "") &&
+                        <Col>
+                            <h5 className="grayHeader">Select a team to add a project to</h5>
+                        </Col>
+                        }
                         
-                            {projects.map(project => (
-                                <Col className="mt-4" key={project._id}> 
-                                    <ProjectBox key={project._id} project={project}/>
-                                </Col>
-                            ))}
+                        {projects.map(project => (
+                            <Col className="mt-4" key={project._id}> 
+                                <ProjectBox key={project._id} project={project}/>
+                            </Col>
+                        ))}
                         
                     </Row>
                     

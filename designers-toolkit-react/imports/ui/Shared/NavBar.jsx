@@ -59,7 +59,11 @@ const [burgerState, changeState] = useState(false)
       <div className="navContainer sticky">
         <Container fluid>
           <Row className="alignNavBarText">
-            <Col md="auto"><Link to="/"><img className="logoImg" src='Logo.svg'/></Link></Col>
+            <Col md="auto">
+              <Link to="/">
+                <img className="logoImg" src='Logo.svg'/>
+              </Link>
+            </Col>
             {/* <img  class="logo" src="logo.png"/> */}
               <Col className="d-flex" md="auto">
                 <NavLink to="/introduction" className="navLink">
@@ -89,7 +93,7 @@ const [burgerState, changeState] = useState(false)
                   <div className="vl-nav"></div>
                 }
                 <h2 className="projectName">{projectName}</h2>
-                
+
               </Col>
               <Col className="d-flex pl-2" style={{justifyContent: 'right'}} md="auto">
                 
