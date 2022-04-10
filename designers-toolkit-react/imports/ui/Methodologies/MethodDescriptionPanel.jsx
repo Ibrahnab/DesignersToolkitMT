@@ -60,7 +60,7 @@ const MethodDescriptionPanel = ({methodDescriptionData, viewingMethod, flipViewi
             console.log("Write your notes here");
         }
 
-        return "Write your notes here";
+        return "";
 
     });
 

@@ -20,6 +20,7 @@ const MethodComment = ({comment, saveComment}) => {
                 <Col md="auto"> 
                         <div className="team-note">
                             <textarea className="note-textarea"
+                                placeholder="Write your notes here..."
                                 rows="20"
                                 cols="10"
                                 onChange={(e) => editComment(e.target.value)}

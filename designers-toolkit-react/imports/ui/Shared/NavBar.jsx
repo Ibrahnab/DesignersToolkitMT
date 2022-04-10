@@ -85,13 +85,11 @@ const [burgerState, changeState] = useState(false)
               
               <Col className="d-flex ml-auto" md="" style={{justifyContent: 'right'}}>
               
-              
-              {(selectedProject !== "" ? true : false) &&
-                <div className="vl-nav"></div>
-              }
-
-
+                {(selectedProject !== "" && user ? true : false) &&
+                  <div className="vl-nav"></div>
+                }
                 <h2 className="projectName">{projectName}</h2>
+                
               </Col>
               <Col className="d-flex pl-2" style={{justifyContent: 'right'}} md="auto">
                 
