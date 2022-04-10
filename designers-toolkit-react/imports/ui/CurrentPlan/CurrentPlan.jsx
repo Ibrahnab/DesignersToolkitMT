@@ -29,7 +29,6 @@ const CurrentPlan = ({currentSprintMethods, methods, suggestedMethods, suggestMe
 
       const meths = ProjectsCollection.findOne({_id: selectedProject}).methodsUsed;
       console.log(meths);
-      console.log(methods);
       
       return meths;
   });

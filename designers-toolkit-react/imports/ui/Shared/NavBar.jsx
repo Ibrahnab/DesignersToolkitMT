@@ -7,11 +7,13 @@ import { connect } from "react-redux";
 import HamburgerMenu from "./HamburgerMenu"
 import { flipHamburger } from "../actions";
 import { useTracker } from 'meteor/react-meteor-data';
+import { ProjectsCollection } from '/imports/api/ProjectsCollection';
 
 
 const NavBar = ({currentSprintMethods, isHamburgerOpen, flipHamburger,selectedProject, selectedTeam}) => {
 
 const user = useTracker(() => Meteor.user());
+//const [selectedProjectState, setSelectedPS] = useState(selectedProject !== "" ? true : false);
 
 const [sprintCount, setSprintCount] = useState(0);
 const [barlock, setBarLock] = useState()
@@ -39,42 +41,69 @@ const [burgerState, changeState] = useState(false)
     changeState(true);
     console.log("focused");
   }
+
+  const projectName = useTracker(() => {
+
+    if(user && selectedProject !== "") {
+      return ProjectsCollection.findOne({_id: selectedProject}).projectName;
+    }
+
+    return;
+  })
+
   return (
     <div>
 
       <div className="filler"></div>
 
       <div className="navContainer sticky">
-        <Container>
-          <Row className="alignNavBarText justify-content-md-center">
-          <Col md="auto"><Link to="/"><img className="logoImg" src='Logo.svg'/></Link></Col>
-          {/* <img  class="logo" src="logo.png"/> */}
-            <Col className="d-flex" md="auto">
-              <NavLink to="/introduction" className="navLink">
-                <h2 className="whiteHeader navText">Introduction</h2>
-                <div className={ 'underscore' + (getActiveRoute() == "/introduction" ? " activated" : "")}></div>
-              </NavLink>
-            </Col>
-            
-            <Col className="d-flex" md="auto">
-              <NavLink to="/methodologies" className="navLink">
-                <h2 className="whiteHeader navText">Methodologies</h2>
-                <div className={ 'underscore' + (getActiveRoute() == "/methodologies" ? " activated" : "")}></div>
-              </NavLink>
-            </Col>
+        <Container fluid>
+          <Row className="alignNavBarText">
+            <Col md="auto"><Link to="/"><img className="logoImg" src='Logo.svg'/></Link></Col>
+            {/* <img  class="logo" src="logo.png"/> */}
+              <Col className="d-flex" md="auto">
+                <NavLink to="/introduction" className="navLink">
+                  <h2 className="whiteHeader navText">Introduction</h2>
+                  <div className={ 'underscore' + (getActiveRoute() == "/introduction" ? " activated" : "")}></div>
+                </NavLink>
+              </Col>
+              
+              <Col className="d-flex" md="auto">
+                <NavLink to="/methodologies" className="navLink">
+                  <h2 className="whiteHeader navText">Methodologies</h2>
+                  <div className={ 'underscore' + (getActiveRoute() == "/methodologies" ? " activated" : "")}></div>
+                </NavLink>
+              </Col>
 
-            <Col className="d-flex" md="auto">
-              <NavLink to="/currentplan" className="navLink">
-                <h2 className="whiteHeader navText">Sprint Plan {sprintCount}</h2>
-                <div className={ 'underscore' + (getActiveRoute() == "/currentplan" ? " activated" : "")}></div>
-              </NavLink>
-            </Col>
-            <Col className="d-flex" md="auto"><div className="searchBtn" onClick={()=> {changeState(!burgerState); flipHamburger()}}>
-              <img src="searchIcon.svg"></img></div>
-            </Col>
-            {/* <Col>
-              <p className="whiteHeader">{selectedTeam}</p>
-            </Col> */}
+              <Col className="d-flex" md="auto">
+                <NavLink to="/currentplan" className="navLink">
+                  <h2 className="whiteHeader navText">Sprint Plan {sprintCount}</h2>
+                  <div className={ 'underscore' + (getActiveRoute() == "/currentplan" ? " activated" : "")}></div>
+                </NavLink>
+              </Col>
+              
+              
+              <Col className="d-flex ml-auto" md="" style={{justifyContent: 'right'}}>
+              
+              
+              {(selectedProject !== "" ? true : false) &&
+                <div className="vl-nav"></div>
+              }
+
+
+                <h2 className="projectName">{projectName}</h2>
+              </Col>
+              <Col className="d-flex pl-2" style={{justifyContent: 'right'}} md="auto">
+                
+                <div className="searchBtn" onClick={()=> {changeState(!burgerState); flipHamburger()}}>
+                  <img src="searchIcon.svg"></img>
+                </div>
+              </Col>
+              
+              
+              {/* <Col>
+                <p className="whiteHeader">{selectedTeam}</p>
+              </Col> */}
           </Row>
         </Container>
 
