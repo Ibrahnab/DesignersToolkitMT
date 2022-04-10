@@ -104,13 +104,13 @@ const SignedInView = ({selectedTeam, selectedProject}) => {
 
     return(
         <Container>
-            <Row className='signedInHeader'>
+            <Row className='mt-5'>
               <Col md="">
                 <h1 className="blackHeader"><em>Welcome back!</em></h1>
               </Col>
               
               <Col md='auto'>
-              <h3 className="blackHeader">Signed in as <em>{user.username}</em></h3>
+                <h3 className="blackHeader">Signed in as <em>{user.username}</em></h3>
                 <button className="dashboardSignInButton" onClick={logout}>
                   
                   <p className="buttonText">Sign Out</p>
