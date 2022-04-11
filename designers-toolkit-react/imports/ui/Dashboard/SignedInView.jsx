@@ -11,12 +11,16 @@ import CreateProjectForm from "./CreateProjectForm";
 import CreateTeamForm from "./CreateTeamForm";
 import { ProjectsCollection } from '/imports/api/ProjectsCollection';
 import { TeamsCollection } from '/imports/api/TeamsCollection';
+import {selectProject} from "../actions/index";
 
-const SignedInView = ({selectedTeam, selectedProject}) => {
+const SignedInView = ({selectedTeam, selectedProject, selectProject}) => {
 
     const user = useTracker(() => Meteor.user());
 
-    const logout = () => Meteor.logout();
+    const logout = () => {
+        selectProject("");
+        Meteor.logout();
+    };
 
     const [createProject, setCreateForm] = useState(false);
     const [createTeam, setCreateTeamForm] = useState(false);
@@ -220,6 +224,11 @@ const SignedInView = ({selectedTeam, selectedProject}) => {
 
 };
 
+const mapDispatchToProps = dispatch => {
+    return {
+        selectProject: (projectId) => dispatch(selectProject(projectId))
+    }
+}
 
 const mapStateToProps = (state) => {
     return{
@@ -228,4 +237,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps)(SignedInView);
+export default connect(mapStateToProps, mapDispatchToProps)(SignedInView);

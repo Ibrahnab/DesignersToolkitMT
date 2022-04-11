@@ -24,7 +24,10 @@ const [burgerState, changeState] = useState(false)
     currentSprintMethods.forEach((item)=>{
       count+= 1;
     });
-    setSprintCount(count);
+    if(!user) {
+      setSprintCount(count);
+    }
+    
   }, [currentSprintMethods, sprintCount])
 
   function getActiveRoute() {
@@ -41,6 +44,29 @@ const [burgerState, changeState] = useState(false)
     changeState(true);
     console.log("focused");
   }
+
+  const project = useTracker(() => {
+    if(user && selectedProject !== "") {
+      return ProjectsCollection.findOne({_id: selectedProject})
+    }
+    return;
+  })
+
+  useEffect(() => {
+    if(user) {
+      if(selectedProject !== ""){
+        var count = 0;
+
+        for(let i =0; i<project.methodsUsed.length; i++){
+          console.log(project.methodsUsed)
+          count += project.methodsUsed[i].inPhases.length;
+        }
+
+        setSprintCount(count);
+      }
+    }
+
+  }, [project, sprintCount])
 
   const projectName = useTracker(() => {
 
