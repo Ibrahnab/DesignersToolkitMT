@@ -10,6 +10,7 @@ import { Link, useLocation, NavLink } from "react-router-dom";
 import {setMethodID} from "../Methodologies/Methodologies";
 import Form from "react-bootstrap/Form";
 import { useTracker } from 'meteor/react-meteor-data';
+import { ProjectsCollection } from '/imports/api/ProjectsCollection';
 
 const MethodCard = ({methodData, addToSprint, adjustPhase, removeFromSprint, showCurrentMethod, flipViewingMethod, viewingMethod, removePhaseFromMethod, isinPlan, underPhase, selectedProject}) => {
 
@@ -73,10 +74,32 @@ const MethodCard = ({methodData, addToSprint, adjustPhase, removeFromSprint, sho
         setIsActive(true);
     }
 
+    const hasNote = useTracker(() => {
+        if(!user || selectedProject === ""){
+            return false;
+        }
+
+        const p = ProjectsCollection.findOne({_id: selectedProject});
+        const n = p.methodsUsed.filter(object => object.methodId == methodData.id)[0];
+        if(n != undefined){
+            return n.methodNote !== "" ? true : false;
+        }
+        return false;
+    })
+
     const [inputRef, setInputFocus] = useFocus();
     return (
         <div className="methodCard">
         <Container className="methodContainer p-0">
+        
+        <Row>
+            <Col>
+                <div className="noteIcon">
+                    {hasNote && <img src="Document_icon.svg"/>}
+                    
+                </div>
+            </Col>
+        </Row>
         <Row className="justify-content-md-center">
             <Col className="justify-content-md-center d-flex">
                 <NavLink to="/methodologies" className="cardNav p-0">
