@@ -79,23 +79,33 @@ const [burgerState, changeState] = useState(false)
                 </NavLink>
               </Col>
 
-              <Col className="d-flex" md="auto">
+              <Col className="d-flex sprintPlanNav" md="auto">
                 <NavLink to="/currentplan" className="navLink">
-                  <h2 className="whiteHeader navText">Sprint Plan {sprintCount}</h2>
+                  <h2 id="sprintPlanNav" className="whiteHeader navText">Sprint Plan </h2>
                   <div className={ 'underscore' + (getActiveRoute() == "/currentplan" ? " activated" : "")}></div>
                 </NavLink>
               </Col>
+
+              {/* Right side */}
+
+              <Col  className="d-flex ml-auto pl-2" md="" style={{justifyContent: 'right'}}>
+                <img src="card_icon.svg" />
+              </Col>
+              
+              <Col className="d-flex sprintPlanNav" md="auto" style={{justifyContent: 'right'}}>
+                <h2 id="" className="whiteHeader navText">{sprintCount}</h2>
+              </Col>
               
               
-              <Col className="d-flex ml-auto" md="" style={{justifyContent: 'right'}}>
+              <Col className="d-flex" md="auto" style={{justifyContent: 'right'}}>
               
-                {(selectedProject !== "" && user ? true : false) &&
-                  <div className="vl-nav"></div>
+                {
+                  <div className="vl-nav" md="auto"></div>
                 }
                 <h2 className="projectName">{projectName}</h2>
 
               </Col>
-              <Col className="d-flex pl-2" style={{justifyContent: 'right'}} md="auto">
+              <Col className="d-flex" md="auto" style={{justifyContent: 'right'}}>
                 
                 <div className="searchBtn" onClick={()=> {changeState(!burgerState); flipHamburger()}}>
                   <img src="searchIcon.svg"></img>

@@ -24,6 +24,7 @@ body {
   text-decoration: none;
   font-weight: 800;
   font-size: 20px;
+  display:inline-block;
 
 }
 
@@ -1285,10 +1286,24 @@ a {
   color: white;
   font-size: 20px;
   padding-top:8px;
+  margin-left:20px;
 }
 
 .vl-nav{
   border-left: 2px solid white;
   height: 40px;
-  margin-right:20px;
+  padding-right:0px;
+  width:0px;
+  margin-right:0px;
+}
+#circleMethods {
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  padding: 10px;
+  background: rgb(52, 107, 162);
+  color: rgb(255, 255, 255);
+  text-align: center;
+  font:'Montserrat';
+  padding:4px;
 }
