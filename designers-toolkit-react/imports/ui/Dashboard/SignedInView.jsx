@@ -12,6 +12,7 @@ import CreateTeamForm from "./CreateTeamForm";
 import { ProjectsCollection } from '/imports/api/ProjectsCollection';
 import { TeamsCollection } from '/imports/api/TeamsCollection';
 import {selectProject} from "../actions/index";
+import { Notification, Color } from "../notify";
 
 const SignedInView = ({selectedTeam, selectedProject, selectProject}) => {
 
@@ -35,6 +36,7 @@ const SignedInView = ({selectedTeam, selectedProject, selectProject}) => {
         setCreateTeamForm(!createTeam);
     }
     
+
     // const selectTeam = (teamId) => {
     //     setSelectedTeam(teamId);
     //     console.log(selectedTeam);
