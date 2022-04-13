@@ -10,9 +10,10 @@ import { connect } from "react-redux";
 import {SuggestionsBox}  from "./SuggestionsBox";
 import { useTracker } from 'meteor/react-meteor-data';
 import { ProjectsCollection } from '/imports/api/ProjectsCollection';
+import  MethodNoteCard from "./MethodNoteCard";
 
 const CurrentPlan = ({showCurrentMethod, flipViewingMethod, viewingMethod, currentSprintMethods, methods, suggestedMethods, suggestMethods, selectedProject}) => {
-    
+
     const user = useTracker(() => Meteor.user());
 
     //Used for suggest methods popup
@@ -74,6 +75,18 @@ const CurrentPlan = ({showCurrentMethod, flipViewingMethod, viewingMethod, curre
       }
       return timeUsed.find(obj => obj.phase === requestedPhase).time
     }
+
+    const allNotes = useTracker(() => {
+      if(!user || selectedProject === ""){
+          return;
+      }
+
+      const p = ProjectsCollection.findOne({_id: selectedProject});
+      const methodsWithNotes = p.methodsUsed.filter(object => object.methodNote !== "");
+      console.log(methodsWithNotes);
+      return methodsWithNotes;
+  })
+
     const [selectedPhase, changePhase] = useState("SprintLock");
 
     return(
@@ -260,30 +273,9 @@ const CurrentPlan = ({showCurrentMethod, flipViewingMethod, viewingMethod, curre
                     <Col><h5 className="black-note-header">Understand</h5></Col>
                   </Row>
                   <Row>
-                    {currentSprintMethods.filter(meth => meth.inPhase.find((phaze) => phaze === "understand") !== undefined).map((meth) => (
+                    {user && allNotes.filter(obj => obj.inPhases.find((phaze) => phaze === "understand") !== undefined).map( meth => (
                         <><Col md="auto">
-                        <div className="notes-box">
-                          <Row>
-                            {/*<NavLink to="/methodologies">
-                              <Col><img onClick={()=>{{!viewingMethod ? flipViewingMethod(): undefined}; showCurrentMethod(meth.id)}} className="note-img" src={meth.image}></img></Col>
-                            </NavLink>*/}
-                            <Col><img className="note-img" src={meth.image}></img></Col>
-                          </Row>
-                          <Row>
-                          <Col><text className="note-header">{meth.name}</text></Col>
-                          </Row>
-                          <Row md="auto">
-                          <Col><text className="note-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                          sed do eiusmod tempor incididunt ut labore et dolore magna
-                          aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                          ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                          Duis aute irure dolor in reprehenderit in voluptate
-                          velit esse cillum dolore eu fugiat nulla pariatur.
-                          Excepteur sint occaecat cupidatat non proident,
-                          sunt in culpa qui officia deserunt mollit anim
-                          id est laborum </text></Col>
-                          </Row>
-                        </div>
+                        <MethodNoteCard methodData={methods.filter(m => m.id === meth.methodId)[0]} methodNote={meth.methodNote}></MethodNoteCard>
                       </Col></>
                     ))}
                   </Row>
@@ -295,27 +287,9 @@ const CurrentPlan = ({showCurrentMethod, flipViewingMethod, viewingMethod, curre
                     <Col><h5 className="black-note-header">Define</h5></Col>
                   </Row>
                   <Row>
-                    {currentSprintMethods.filter(meth => meth.inPhase.find((phaze) => phaze === "define") !== undefined).map((meth) => (
+                  {user && allNotes.filter(obj => obj.inPhases.find((phaze) => phaze === "define") !== undefined).map( meth => (
                         <><Col md="auto">
-                        <div className="notes-box">
-                          <Row>
-                          <Col><img className="note-img" src={meth.image}></img></Col>
-                          </Row>
-                          <Row>
-                          <Col><text className="note-header">{meth.name}</text></Col>
-                          </Row>
-                          <Row md="auto">
-                          <Col><text className="note-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                          sed do eiusmod tempor incididunt ut labore et dolore magna
-                          aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                          ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                          Duis aute irure dolor in reprehenderit in voluptate
-                          velit esse cillum dolore eu fugiat nulla pariatur.
-                          Excepteur sint occaecat cupidatat non proident,
-                          sunt in culpa qui officia deserunt mollit anim
-                          id est laborum </text></Col>
-                          </Row>
-                        </div>
+                        <MethodNoteCard methodData={methods.filter(m => m.id === meth.methodId)[0]} methodNote={meth.methodNote}></MethodNoteCard>
                       </Col></>
                     ))}
                   </Row>
@@ -327,27 +301,9 @@ const CurrentPlan = ({showCurrentMethod, flipViewingMethod, viewingMethod, curre
                     <Col><h5 className="black-note-header">Sketch</h5></Col>
                   </Row>
                   <Row>
-                  {currentSprintMethods.filter(meth => meth.inPhase.find((phaze) => phaze === "sketch") !== undefined).map((meth) => (
+                  {user && allNotes.filter(obj => obj.inPhases.find((phaze) => phaze === "sketch") !== undefined).map( meth => (
                         <><Col md="auto">
-                        <div className="notes-box">
-                          <Row>
-                          <Col><img className="note-img" src={meth.image}></img></Col>
-                          </Row>
-                          <Row>
-                          <Col><text className="note-header">{meth.name}</text></Col>
-                          </Row>
-                          <Row md="auto">
-                          <Col><text className="note-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                          sed do eiusmod tempor incididunt ut labore et dolore magna
-                          aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                          ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                          Duis aute irure dolor in reprehenderit in voluptate
-                          velit esse cillum dolore eu fugiat nulla pariatur.
-                          Excepteur sint occaecat cupidatat non proident,
-                          sunt in culpa qui officia deserunt mollit anim
-                          id est laborum </text></Col>
-                          </Row>
-                        </div>
+                        <MethodNoteCard methodData={methods.filter(m => m.id === meth.methodId)[0]} methodNote={meth.methodNote}></MethodNoteCard>
                       </Col></>
                     ))}
                   </Row>
@@ -359,27 +315,9 @@ const CurrentPlan = ({showCurrentMethod, flipViewingMethod, viewingMethod, curre
                     <Col><h5 className="black-note-header">Decide</h5></Col>
                   </Row>
                   <Row>
-                  {currentSprintMethods.filter(meth => meth.inPhase.find((phaze) => phaze === "decide") !== undefined).map((meth) => (
+                  {user && allNotes.filter(obj => obj.inPhases.find((phaze) => phaze === "decide") !== undefined).map( meth => (
                         <><Col md="auto">
-                        <div className="notes-box">
-                          <Row>
-                          <Col><img className="note-img" src={meth.image}></img></Col>
-                          </Row>
-                          <Row>
-                          <Col><text className="note-header">{meth.name}</text></Col>
-                          </Row>
-                          <Row md="auto">
-                          <Col><text className="note-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                          sed do eiusmod tempor incididunt ut labore et dolore magna
-                          aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                          ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                          Duis aute irure dolor in reprehenderit in voluptate
-                          velit esse cillum dolore eu fugiat nulla pariatur.
-                          Excepteur sint occaecat cupidatat non proident,
-                          sunt in culpa qui officia deserunt mollit anim
-                          id est laborum </text></Col>
-                          </Row>
-                        </div>
+                        <MethodNoteCard methodData={methods.filter(m => m.id === meth.methodId)[0]} methodNote={meth.methodNote}></MethodNoteCard>
                       </Col></>
                     ))}
                   </Row>
@@ -391,27 +329,9 @@ const CurrentPlan = ({showCurrentMethod, flipViewingMethod, viewingMethod, curre
                     <Col><h5 className="black-note-header">Prototype</h5></Col>
                   </Row>
                   <Row>
-                  {currentSprintMethods.filter(meth => meth.inPhase.find((phaze) => phaze === "prototype") !== undefined).map((meth) => (
+                  {user && allNotes.filter(obj => obj.inPhases.find((phaze) => phaze === "prototype") !== undefined).map( meth => (
                         <><Col md="auto">
-                        <div className="notes-box">
-                          <Row>
-                          <Col><img className="note-img" src={meth.image}></img></Col>
-                          </Row>
-                          <Row>
-                          <Col><text className="note-header">{meth.name}</text></Col>
-                          </Row>
-                          <Row md="auto">
-                          <Col><text className="note-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                          sed do eiusmod tempor incididunt ut labore et dolore magna
-                          aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                          ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                          Duis aute irure dolor in reprehenderit in voluptate
-                          velit esse cillum dolore eu fugiat nulla pariatur.
-                          Excepteur sint occaecat cupidatat non proident,
-                          sunt in culpa qui officia deserunt mollit anim
-                          id est laborum </text></Col>
-                          </Row>
-                        </div>
+                        <MethodNoteCard methodData={methods.filter(m => m.id === meth.methodId)[0]} methodNote={meth.methodNote}></MethodNoteCard>
                       </Col></>
                     ))}
                   </Row>
@@ -423,27 +343,9 @@ const CurrentPlan = ({showCurrentMethod, flipViewingMethod, viewingMethod, curre
                     <Col><h5 className="black-note-header">Validate</h5></Col>
                   </Row>
                   <Row>
-                  {currentSprintMethods.filter(meth => meth.inPhase.find((phaze) => phaze === "validate") !== undefined).map((meth) => (
+                  {user && allNotes.filter(obj => obj.inPhases.find((phaze) => phaze === "validate") !== undefined).map( meth => (
                         <><Col md="auto">
-                        <div className="notes-box">
-                          <Row>
-                          <Col><img className="note-img" src={meth.image}></img></Col>
-                          </Row>
-                          <Row>
-                          <Col><text className="note-header">{meth.name}</text></Col>
-                          </Row>
-                          <Row md="auto">
-                          <Col><text className="note-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                          sed do eiusmod tempor incididunt ut labore et dolore magna
-                          aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                          ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                          Duis aute irure dolor in reprehenderit in voluptate
-                          velit esse cillum dolore eu fugiat nulla pariatur.
-                          Excepteur sint occaecat cupidatat non proident,
-                          sunt in culpa qui officia deserunt mollit anim
-                          id est laborum </text></Col>
-                          </Row>
-                        </div>
+                        <MethodNoteCard methodData={methods.filter(m => m.id === meth.methodId)[0]} methodNote={meth.methodNote}></MethodNoteCard>
                       </Col></>
                     ))}
                   </Row></>

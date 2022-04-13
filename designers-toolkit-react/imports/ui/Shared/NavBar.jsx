@@ -88,7 +88,12 @@ const [burgerState, changeState] = useState(false)
   const projectName = useTracker(() => {
 
     if(user && selectedProject !== "") {
-      return ProjectsCollection.findOne({_id: selectedProject}).projectName;
+      
+      const r = ProjectsCollection.findOne({_id: selectedProject});
+      if(r == undefined){
+        return "";
+      }
+      return r.projectName;;
     }
 
     return;

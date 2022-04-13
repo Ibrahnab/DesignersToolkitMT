@@ -3,8 +3,10 @@ import Row  from "react-bootstrap/Row";
 import Col from 'react-bootstrap/Col';
 import { useTracker } from 'meteor/react-meteor-data';
 import Container from "react-bootstrap/Container";
+import {connect} from "react-redux";
+import {selectProject} from "../actions/index";
 
-const EditProject = ({handleClose, project}) => {
+const EditProject = ({handleClose, project, selectProject}) => {
 
     const findUser = (submittedUser) => {
         
@@ -28,6 +30,7 @@ const EditProject = ({handleClose, project}) => {
     }
 
     const deleteProject = () => {
+        selectProject("");
         Meteor.call('projects.remove', project._id);
         handleClose();
     }
@@ -87,4 +90,10 @@ const EditProject = ({handleClose, project}) => {
     );
 };
 
-export default EditProject;
+const mapDispatchToProps = dispatch => {
+    return {
+        selectProject: (projectId) => dispatch(selectProject(projectId))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(EditProject);
