@@ -31,7 +31,49 @@ const CurrentPlan = ({currentSprintMethods, methods, suggestedMethods, suggestMe
       //console.log(meths);
       
       return meths;
-  });
+    });
+
+    const projectTime = useTracker(() => {
+      if(!user || selectedProject === "") {
+          return[]
+      }
+
+      const meths = ProjectsCollection.findOne({_id: selectedProject}).methodsUsed;
+      //console.log(meths);
+      
+      return meths;
+    });
+
+    const timeAllocated = useTracker(() => {
+
+      if(!user || selectedProject === "") {
+        return[]
+    }
+
+    const ta = ProjectsCollection.findOne({_id: selectedProject}).timeAllocated;
+    //console.log(ta);
+    return ta;
+    
+    })
+
+    const timeUsed = useTracker(() => {
+
+      if(!user || selectedProject === "") {
+        return[]
+    }
+
+    const tu = ProjectsCollection.findOne({_id: selectedProject}).timeUsed;
+    //console.log(tu);
+    return tu;
+    
+    })
+
+    const getTimeUsed = (requestedPhase) => {
+      if(!user || selectedProject === "") {
+        return ""
+      }
+      return timeUsed.find(obj => obj.phase === requestedPhase).time
+    }
 
     return(
     <div>
@@ -54,7 +96,15 @@ const CurrentPlan = ({currentSprintMethods, methods, suggestedMethods, suggestMe
             ))}
             
             {/* Signed in */}
-            {user && projectMethods.filter(meth => meth.inPhases.find((phaze) => phaze ==="understand") !== undefined).map((meth) => (
+            {user && 
+              <Row>
+                <Col className="d-flex ml-auto pl-2" md="" style={{justifyContent: 'right'}}>
+                  <h5 className="blackHeaderSlim">{getTimeUsed("understand")}/{timeAllocated[0]}m</h5>
+                </Col>
+              </Row>
+            }
+            {user && 
+              projectMethods.filter(meth => meth.inPhases.find((phaze) => phaze ==="understand") !== undefined).map((meth) => (
               <MethodCard key={meth.methodId} methodData={methods.filter(m => m.id === meth.methodId)[0]} isinPlan={true} underPhase="understand"/> 
             ))}
 
@@ -63,7 +113,7 @@ const CurrentPlan = ({currentSprintMethods, methods, suggestedMethods, suggestMe
           </Col>
 
           <Col className="sprintCol">
-          <Row>
+            <Row>
               <Col><div className="circle sprint define"></div></Col>
               <Col><h5 className="blackHeader">Define</h5></Col>
             </Row>
@@ -73,6 +123,13 @@ const CurrentPlan = ({currentSprintMethods, methods, suggestedMethods, suggestMe
             ))}
 
             {/* Signed in */}
+            {user && 
+              <Row>
+                <Col className="d-flex ml-auto pl-2" md="" style={{justifyContent: 'right'}}>
+                  <h5 className="blackHeaderSlim">{getTimeUsed("define")}/{timeAllocated[1]}m</h5>
+                </Col>
+              </Row>
+            }
             {user && projectMethods.filter(meth => meth.inPhases.find((phaze) => phaze ==="define") !== undefined).map((meth) => (
               <MethodCard key={meth.methodId} methodData={methods.filter(m => m.id === meth.methodId)[0]} isinPlan={true} underPhase="define"/> 
             ))}
@@ -84,7 +141,7 @@ const CurrentPlan = ({currentSprintMethods, methods, suggestedMethods, suggestMe
           <Col className="sprintCol">
           <Row>
               <Col><div className="circle sprint sketch"></div></Col>
-              <Col><h5 className="blackHeader">Ideate</h5></Col>
+              <Col><h5 className="blackHeader">Sketch</h5></Col>
             </Row>
 
             {!user && currentSprintMethods.filter(meth => meth.inPhase.find((phaze) => phaze ==="sketch") !== undefined).map((meth) => (
@@ -92,6 +149,13 @@ const CurrentPlan = ({currentSprintMethods, methods, suggestedMethods, suggestMe
             ))}
 
             {/* Signed in */}
+            {user && 
+              <Row>
+                <Col className="d-flex ml-auto pl-2" md="" style={{justifyContent: 'right'}}>
+                  <h5 className="blackHeaderSlim">{getTimeUsed("sketch")}/{timeAllocated[2]}m</h5>
+                </Col>
+              </Row>
+            }
             {user && projectMethods.filter(meth => meth.inPhases.find((phaze) => phaze ==="sketch") !== undefined).map((meth) => (
               <MethodCard key={meth.methodId} methodData={methods.filter(m => m.id === meth.methodId)[0]} isinPlan={true} underPhase="sketch"/> 
             ))}
@@ -111,6 +175,13 @@ const CurrentPlan = ({currentSprintMethods, methods, suggestedMethods, suggestMe
             ))}
 
             {/* Signed in */}
+            {user && 
+              <Row>
+                <Col className="d-flex ml-auto pl-2" md="" style={{justifyContent: 'right'}}>
+                  <h5 className="blackHeaderSlim">{getTimeUsed("decide")}/{timeAllocated[3]}m</h5>
+                </Col>
+              </Row>
+            }
             {user && projectMethods.filter(meth => meth.inPhases.find((phaze) => phaze ==="decide") !== undefined).map((meth) => (
               <MethodCard key={meth.methodId} methodData={methods.filter(m => m.id === meth.methodId)[0]} isinPlan={true} underPhase="decide"/> 
             ))}
@@ -130,6 +201,13 @@ const CurrentPlan = ({currentSprintMethods, methods, suggestedMethods, suggestMe
             ))}
 
             {/* Signed in */}
+            {user && 
+              <Row>
+                <Col className="d-flex ml-auto pl-2" md="" style={{justifyContent: 'right'}}>
+                  <h5 className="blackHeaderSlim">{getTimeUsed("prototype")}/{timeAllocated[4]}m</h5>
+                </Col>
+              </Row>
+            }
             {user && projectMethods.filter(meth => meth.inPhases.find((phaze) => phaze ==="prototype") !== undefined).map((meth) => (
               <MethodCard key={meth.methodId} methodData={methods.filter(m => m.id === meth.methodId)[0]} isinPlan={true} underPhase="prototype"/> 
             ))}
@@ -148,6 +226,13 @@ const CurrentPlan = ({currentSprintMethods, methods, suggestedMethods, suggestMe
             ))}
 
             {/* Signed in */}
+            {user && 
+              <Row>
+                <Col className="d-flex ml-auto pl-2" md="" style={{justifyContent: 'right'}}>
+                  <h5 className="blackHeaderSlim">{getTimeUsed("validate")}/{timeAllocated[5]}m</h5>
+                </Col>
+              </Row>
+            }
             {user && projectMethods.filter(meth => meth.inPhases.find((phaze) => phaze ==="validate") !== undefined).map((meth) => (
               <MethodCard key={meth.methodId} methodData={methods.filter(m => m.id === meth.methodId)[0]} isinPlan={true} underPhase="validate"/> 
             ))}

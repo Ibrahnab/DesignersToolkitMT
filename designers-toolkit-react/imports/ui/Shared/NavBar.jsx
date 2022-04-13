@@ -16,6 +16,7 @@ const user = useTracker(() => Meteor.user());
 //const [selectedProjectState, setSelectedPS] = useState(selectedProject !== "" ? true : false);
 
 const [sprintCount, setSprintCount] = useState(0);
+const [totalTime, setTotalTime] = useState(0);
 const [barlock, setBarLock] = useState()
 const [burgerState, changeState] = useState(false)
 
@@ -68,6 +69,22 @@ const [burgerState, changeState] = useState(false)
 
   }, [project, sprintCount])
 
+  useEffect(() => {
+    if(user) {
+      if(selectedProject !== ""){
+        var count = 0;
+
+        for(let i =0; i<project.timeUsed.length; i++){
+          //console.log(project.methodsUsed)
+          count += project.timeUsed[i].time;
+        }
+
+        setTotalTime(count);
+      }
+    }
+
+  }, [project, totalTime])
+
   const projectName = useTracker(() => {
 
     if(user && selectedProject !== "") {
@@ -91,21 +108,21 @@ const [burgerState, changeState] = useState(false)
               </Link>
             </Col>
             {/* <img  class="logo" src="logo.png"/> */}
-              <Col className="d-flex" md="auto">
+              <Col className="d-flex p-0" md="auto">
                 <NavLink to="/introduction" className="navLink">
                   <h2 className="whiteHeader navText">Introduction</h2>
                   <div className={ 'underscore' + (getActiveRoute() == "/introduction" ? " activated" : "")}></div>
                 </NavLink>
               </Col>
               
-              <Col className="d-flex" md="auto">
-                <NavLink to="/methodologies" className="navLink">
+              <Col className="d-flex p-0" md="auto">
+                <NavLink to="/methodologies" className="navLink p-0">
                   <h2 className="whiteHeader navText">Methodologies</h2>
                   <div className={ 'underscore' + (getActiveRoute() == "/methodologies" ? " activated" : "")}></div>
                 </NavLink>
               </Col>
 
-              <Col className="d-flex sprintPlanNav" md="auto">
+              <Col className="d-flex sprintPlanNav p-0" md="auto">
                 <NavLink to="/currentplan" className="navLink">
                   <h2 id="sprintPlanNav" className="whiteHeader navText">Sprint Plan </h2>
                   <div className={ 'underscore' + (getActiveRoute() == "/currentplan" ? " activated" : "")}></div>
@@ -122,6 +139,13 @@ const [burgerState, changeState] = useState(false)
                 <h2 id="" className="whiteHeader navText">{sprintCount}</h2>
               </Col>
               
+              <Col  className="d-flex ml-auto pl-2" md="auto" style={{justifyContent: 'right'}}>
+                <img src="white_clock_icon.svg" />
+              </Col>
+              
+              <Col className="d-flex sprintPlanNav" md="auto" style={{justifyContent: 'right'}}>
+                <h2 id="" className="whiteHeader navText">~{totalTime}m</h2>
+              </Col>
               
               <Col className="d-flex" md="auto" style={{justifyContent: 'right'}}>
               
