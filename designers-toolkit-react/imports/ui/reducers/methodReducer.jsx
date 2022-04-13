@@ -524,6 +524,27 @@ const INITIAL_STATE = {
                 recommendedToolsIcon: ["miro_icon.svg", "figma_icon.svg"],
                 recommendedToolsDifficulty: ["diff_1.png", "diff_2.png"],
                 recommendedToolsLink: ["https://miro.com/", "http://figma.com/"],
+            },
+            {
+                id: "24",
+                name: "Be Your Customer",
+                participants: 0,
+                time: 10,
+                phase: ["understand"],
+                image: "boot_up_notetaking_img.svg",                           // <---------
+                inSprint: false,
+                currentPhase: "none",
+                description:"Let one or more of the stakeholders in the company imitate the users by describing the activities performed by a user when they use the product. It is common to include the experience of the user, such as needs and wishes, in the description. After this, the users perception of the product should be indentified. This should lead to an understanding in potential false assumptions or misjudgements from the stakeholders towards the users.",
+                steps: ["Let the stakeholder use the product and describe what needs and wishes he might have as a user",
+                "Let the stakeholder express how they believe the user would percieve the product",
+                "Use the information gathered to list assumptions"],
+                stepsNbr:["1","2","3"],
+                inPhase:[],
+                participantRange: "2+",
+                timeRange: "10-60m",
+                recommendedToolsIcon: ["miro_icon.svg", "figma_icon.svg"],
+                recommendedToolsDifficulty: ["diff_1.png", "diff_2.png"],
+                recommendedToolsLink: ["https://miro.com/", "http://figma.com/"],
             }
     ], //id, title, de scr, price, img
         suggestedMethods:[],

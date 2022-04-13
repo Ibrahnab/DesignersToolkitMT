@@ -86,7 +86,7 @@ const MethodDescriptionPanel = ({methodDescriptionData, viewingMethod, flipViewi
                 </Col>
             </div>
 
-            <div className="row justify-content-md-center mt-1">
+            <div className="row justify-content-md-center mt-1 spc">
                 <div className="col-sm-5">
                     <h3> Description </h3>
                     <p className="methodDescriptionBodyText">{methodDescriptionData.description}</p>
@@ -162,7 +162,7 @@ const MethodDescriptionPanel = ({methodDescriptionData, viewingMethod, flipViewi
                         </div>
                         ))}
                 </div>
-                <div className="col-sm-3 md-4">
+                <div className="col-sm-3 md-4 spc2">
                     <div className="row justify-content-md-center">
                         <h5 className="add-method-text">Add method to Sprint</h5>
                     </div>
