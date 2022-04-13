@@ -78,12 +78,12 @@ const CurrentPlan = ({showCurrentMethod, flipViewingMethod, viewingMethod, curre
 
     const allNotes = useTracker(() => {
       if(!user || selectedProject === ""){
-          return;
+          return [];
       }
 
       const p = ProjectsCollection.findOne({_id: selectedProject});
       const methodsWithNotes = p.methodsUsed.filter(object => object.methodNote !== "");
-      console.log(methodsWithNotes);
+      //console.log(methodsWithNotes);
       return methodsWithNotes;
   })
 

@@ -1340,7 +1340,7 @@ a {
   font-weight: 800;
 }
 .notes-box{
-  width: 320px;
+  width: 420px;
   height:480px;
   background-color:rgb(255, 255, 255);
   border-radius: 5px;
@@ -1364,7 +1364,9 @@ a {
   font-size: 16px;
   padding-bottom: 0px;
   display: flex;
-  text-align: center;
+  text-align: left;
+  padding-left: 50px;
+  padding-right:50px;
 }
 .note-header{
   font-size: 24px;
