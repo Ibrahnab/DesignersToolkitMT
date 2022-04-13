@@ -23,6 +23,8 @@ const MethodCard = ({methodData, addToSprint, adjustPhase, removeFromSprint, sho
         if(selectedProject != "" && user){
             console.log("inserted into project" + selectedProject);
             Meteor.call('projects.addMethod', selectedProject, methodData.id, `${phase}`, "");
+            Meteor.call('projects.addTime', selectedProject, methodData.time, `${phase}`)
+            console.log(methodData.time);
             return;
         }
 
@@ -37,6 +39,7 @@ const MethodCard = ({methodData, addToSprint, adjustPhase, removeFromSprint, sho
         if(selectedProject != "" && user){
             console.log("removed method from project" + selectedProject);
             Meteor.call('projects.removeMethod', selectedProject, methodData.id, `${incPhase}`, "");
+            Meteor.call('projects.subTime', selectedProject, methodData.time, `${incPhase}`);
             return;
         }
         

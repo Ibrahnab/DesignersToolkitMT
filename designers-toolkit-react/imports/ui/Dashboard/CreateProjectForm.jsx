@@ -17,13 +17,13 @@ const CreateProjectForm = ({handleClose, selectedTeam}) => {
 
         newArr[index] = parseInt(e.target.value);
 
-        console.log(newArr);
+        //console.log(newArr);
         changeAllocated(newArr);
     }
 
     const createProject = () => {
         Meteor.call('projects.insert', selectedTeam, newName, newAllocatedTime);
-        console.log("inserted into: " + selectedTeam)
+        //console.log("inserted into: " + selectedTeam)
         handleClose();
     }
 

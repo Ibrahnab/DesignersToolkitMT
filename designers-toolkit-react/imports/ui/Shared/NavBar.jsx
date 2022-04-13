@@ -58,7 +58,7 @@ const [burgerState, changeState] = useState(false)
         var count = 0;
 
         for(let i =0; i<project.methodsUsed.length; i++){
-          console.log(project.methodsUsed)
+          //console.log(project.methodsUsed)
           count += project.methodsUsed[i].inPhases.length;
         }
 

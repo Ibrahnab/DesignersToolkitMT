@@ -18,7 +18,7 @@ const EditProject = ({handleClose, project}) => {
 
         newArr[index] = parseInt(e.target.value);
 
-        console.log(newArr);
+        //console.log(newArr);
         changeAllocated(newArr);
     }
 
