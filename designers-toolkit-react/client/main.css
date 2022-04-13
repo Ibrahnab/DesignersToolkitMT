@@ -1340,7 +1340,7 @@ a {
   font-weight: 800;
 }
 .notes-box{
-  width: 420px;
+  width: 450px;
   height:480px;
   background-color:rgb(255, 255, 255);
   border-radius: 5px;
@@ -1350,6 +1350,8 @@ a {
   /* margin-left:20px; */
   margin-top:10px;
   margin-bottom:20px;
+  overflow-y: auto;
+  overflow-x:hidden;
 }
 .note-img {
   margin-top: 5px;
@@ -1389,4 +1391,28 @@ a {
   text-decoration: none;
   font-weight: 800;
   font-size: 18px;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+  transition-duration: 300ms;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(128, 128, 128); 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #585858; 
+  transition-duration: 300ms;
 }
