@@ -6,17 +6,25 @@ import Container from "react-bootstrap/Container";
 import EditProject from "./EditProject";
 import {connect} from "react-redux";
 import {selectProject} from "../actions/index";
+import { Link, useLocation, NavLink, useNavigate  } from "react-router-dom";
 
 const ProjectBox = ({project, selectProject, selectedProject, selectedTeam}) =>{
 
     const [openEdit, setOpenEdit] = useState(false);
+    const navigate = useNavigate();
 
     const switchEdit = () => {
         setOpenEdit(!openEdit);
     }
+    function navigateToMethodologies() {
+        const location = useLocation();
+        return includes(location.pathname,"Methodologies");
+    }
 
     const selectThisProject = () => {
+        
         selectProject(project._id);
+        navigate("/methodologies");
     }
 
     const identifySelected = () => {
