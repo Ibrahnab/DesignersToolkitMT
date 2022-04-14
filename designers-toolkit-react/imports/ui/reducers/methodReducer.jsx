@@ -25,7 +25,7 @@ const INITIAL_STATE = {
             stepsNbr:["1","2","3","4","5"],
             inPhase:[],
             recommendedToolsIcon: ["miro_icon.svg", "maze_icon.svg"],
-            recommendedToolsDifficulty: ["diff_1.png", "diff_1.png"],
+            recommendedToolsDifficulty: ["diff1.svg", "diff1.svg"],
             recommendedToolsLink: ["http://figma.com/", "https://maze.co//"],
     }],
     methods: [
@@ -52,7 +52,7 @@ const INITIAL_STATE = {
             participantRange: "1",
             timeRange: "30-60m",
             recommendedToolsIcon: ["miro_icon.svg", "maze_icon.svg"],
-            recommendedToolsDifficulty: ["diff_1.png", "diff_1.png"],
+            recommendedToolsDifficulty: ["diff1.svg", "diff1.svg"],
             recommendedToolsLink: ["http://figma.com/", "https://maze.co//"],
         },
 
@@ -74,7 +74,7 @@ const INITIAL_STATE = {
             participantRange: "0",
             timeRange: "1-3d",
             recommendedToolsIcon: ["miro_icon.svg", "figma_icon.svg", "html_icon.svg"],
-            recommendedToolsDifficulty: ["diff_1.png", "diff_2.png", "diff_3.png"],
+            recommendedToolsDifficulty: ["diff1.svg", "diff2.svg", "diff3.svg"],
             recommendedToolsLink: ["https://miro.com/", "http://figma.com/", "https://www.w3schools.com/html/"],
         },
 
@@ -96,7 +96,7 @@ const INITIAL_STATE = {
             participantRange: "0",
             timeRange: "60-90m",
             recommendedToolsIcon: ["miro_icon.svg", "figma_icon.svg"],
-            recommendedToolsDifficulty: ["diff_1.png", "diff_2.png"],
+            recommendedToolsDifficulty: ["diff1.svg", "diff2.svg"],
             recommendedToolsLink: ["https://miro.com/", "http://figma.com/"],
         },
 
@@ -121,7 +121,7 @@ const INITIAL_STATE = {
             participantRange: "1",
             timeRange: "1-2h",
             recommendedToolsIcon: ["miro_icon.svg", "capian_icon.svg"],
-            recommendedToolsDifficulty: ["diff_1.png", "diff_2.png"],
+            recommendedToolsDifficulty: ["diff1.svg", "diff2.svg"],
             recommendedToolsLink: ["https://miro.com/", "https://capian.co/"],
         },
         {
@@ -144,7 +144,7 @@ const INITIAL_STATE = {
             participantRange: "0",
             timeRange: "10m",
             recommendedToolsIcon: ["miro_icon.svg", "figma_icon.svg"],
-            recommendedToolsDifficulty: ["diff_1.png", "diff_2.png"],
+            recommendedToolsDifficulty: ["diff1.svg", "diff2.svg"],
             recommendedToolsLink: ["https://miro.com/", "http://figma.com/"],
         },
 
@@ -167,7 +167,7 @@ const INITIAL_STATE = {
             participantRange: "5+",
             timeRange: "2-3h",
             recommendedToolsIcon: ["miro_icon.svg", "forms_icon.svg"],
-            recommendedToolsDifficulty: ["diff_1.png", "diff_1.png"],
+            recommendedToolsDifficulty: ["diff1.svg", "diff1.svg"],
             recommendedToolsLink: ["https://miro.com/", "https://google.se/intl/sv/forms/about/"],
         },
         {
@@ -188,7 +188,7 @@ const INITIAL_STATE = {
             participantRange: "0",
             timeRange: "15-30m",
             recommendedToolsIcon: ["miro_icon.svg", "figma_icon.svg"],
-            recommendedToolsDifficulty: ["diff_1.png", "diff_2.png"],
+            recommendedToolsDifficulty: ["diff1.svg", "diff2.svg"],
             recommendedToolsLink: ["https://miro.com/", "http://figma.com/"],
         },
         {
@@ -212,7 +212,7 @@ const INITIAL_STATE = {
             participantRange: "1+",
             timeRange: "2-5h",
             recommendedToolsIcon: ["miro_icon.svg", "figma_icon.svg"],
-            recommendedToolsDifficulty: ["diff_1.png", "diff_2.png"],
+            recommendedToolsDifficulty: ["diff1.svg", "diff2.svg"],
             recommendedToolsLink: ["https://miro.com/", "http://figma.com/"],
         },
         {
@@ -235,7 +235,7 @@ const INITIAL_STATE = {
             participantRange: "1",
             timeRange: "45-90m",
             recommendedToolsIcon: ["miro_icon.svg", "figma_icon.svg", "dovetail_icon.png"],
-            recommendedToolsDifficulty: ["diff_1.png", "diff_2.png", "diff_2.png"],
+            recommendedToolsDifficulty: ["diff1.svg", "diff2.svg", "diff2.svg"],
             recommendedToolsLink: ["https://miro.com/", "http://figma.com/", "https://dovetailapp.com/"],
         },
         {
@@ -260,7 +260,7 @@ const INITIAL_STATE = {
             participantRange: "0",
             timeRange: "30-50m",
             recommendedToolsIcon: ["miro_icon.svg", "figma_icon.svg"],
-            recommendedToolsDifficulty: ["diff_1.png", "diff_2.png"],
+            recommendedToolsDifficulty: ["diff1.svg", "diff2.svg"],
             recommendedToolsLink: ["https://miro.com/", "http://figma.com/"],
         },
         {
@@ -286,7 +286,7 @@ const INITIAL_STATE = {
             participantRange: "1",
             timeRange: "30-40m",
             recommendedToolsIcon: ["miro_icon.svg", "figma_icon.svg"],
-            recommendedToolsDifficulty: ["diff_1.png", "diff_2.png"],
+            recommendedToolsDifficulty: ["diff1.svg", "diff2.svg"],
             recommendedToolsLink: ["https://miro.com/", "http://figma.com/"],
         },
         {
@@ -310,7 +310,7 @@ const INITIAL_STATE = {
             participantRange: "0",
             timeRange: "10m",
             recommendedToolsIcon: ["miro_icon.svg", "figma_icon.svg"],
-            recommendedToolsDifficulty: ["diff_1.png", "diff_2.png"],
+            recommendedToolsDifficulty: ["diff1.svg", "diff2.svg"],
             recommendedToolsLink: ["https://miro.com/", "http://figma.com/"],
         },
         {
@@ -330,7 +330,7 @@ const INITIAL_STATE = {
             participantRange: "0",
             timeRange: "30m",
             recommendedToolsIcon: ["miro_icon.svg", "figma_icon.svg"],
-            recommendedToolsDifficulty: ["diff_1.png", "diff_2.png"],
+            recommendedToolsDifficulty: ["diff1.svg", "diff2.svg"],
             recommendedToolsLink: ["https://miro.com/", "http://figma.com/"],
         },
         {
@@ -350,7 +350,7 @@ const INITIAL_STATE = {
             participantRange: "0",
             timeRange: "2-3h",
             recommendedToolsIcon: ["miro_icon.svg", "figma_icon.svg"],
-            recommendedToolsDifficulty: ["diff_1.png", "diff_2.png"],
+            recommendedToolsDifficulty: ["diff1.svg", "diff2.svg"],
             recommendedToolsLink: ["https://miro.com/", "http://figma.com/"],
         },
         {
@@ -371,7 +371,7 @@ const INITIAL_STATE = {
             participantRange: "0",
             timeRange: "30m",
             recommendedToolsIcon: ["miro_icon.svg", "figma_icon.svg"],
-            recommendedToolsDifficulty: ["diff_1.png", "diff_2.png"],
+            recommendedToolsDifficulty: ["diff1.svg", "diff2.svg"],
             recommendedToolsLink: ["https://miro.com/", "http://figma.com/"],
         },
         {
@@ -392,7 +392,7 @@ const INITIAL_STATE = {
             participantRange: "0",
             timeRange: "60m",
             recommendedToolsIcon: ["miro_icon.svg", "figma_icon.svg"],
-            recommendedToolsDifficulty: ["diff_1.png", "diff_2.png"],
+            recommendedToolsDifficulty: ["diff1.svg", "diff2.svg"],
             recommendedToolsLink: ["https://miro.com/", "http://figma.com/"],
         },
         {
@@ -413,7 +413,7 @@ const INITIAL_STATE = {
             participantRange: "0",
             timeRange: "60m",
             recommendedToolsIcon: ["miro_icon.svg", "figma_icon.svg"],
-            recommendedToolsDifficulty: ["diff_1.png", "diff_2.png"],
+            recommendedToolsDifficulty: ["diff1.svg", "diff2.svg"],
             recommendedToolsLink: ["https://miro.com/", "http://figma.com/"],
         },
             {
@@ -436,7 +436,7 @@ const INITIAL_STATE = {
                 participantRange: "0+",
                 timeRange: "30-60m",
                 recommendedToolsIcon: ["miro_icon.svg", "figma_icon.svg"],
-                recommendedToolsDifficulty: ["diff_1.png", "diff_2.png"],
+                recommendedToolsDifficulty: ["diff1.svg", "diff2.svg"],
                 recommendedToolsLink: ["https://miro.com/", "http://figma.com/"],
             },
             {
@@ -458,7 +458,7 @@ const INITIAL_STATE = {
                 participantRange: "0",
                 timeRange: "15-30m",
                 recommendedToolsIcon: ["miro_icon.svg", "figma_icon.svg"],
-                recommendedToolsDifficulty: ["diff_1.png", "diff_2.png"],
+                recommendedToolsDifficulty: ["diff1.svg", "diff2.svg"],
                 recommendedToolsLink: ["https://miro.com/", "http://figma.com/"],
             },
             {
@@ -480,7 +480,7 @@ const INITIAL_STATE = {
                 participantRange: "0",
                 timeRange: "60m",
                 recommendedToolsIcon: ["miro_icon.svg", "figma_icon.svg"],
-                recommendedToolsDifficulty: ["diff_1.png", "diff_2.png"],
+                recommendedToolsDifficulty: ["diff1.svg", "diff2.svg"],
                 recommendedToolsLink: ["https://miro.com/", "http://figma.com/"],
             },
             {
@@ -502,7 +502,7 @@ const INITIAL_STATE = {
                 participantRange: "1",
                 timeRange: "10-20m",
                 recommendedToolsIcon: ["miro_icon.svg", "figma_icon.svg"],
-                recommendedToolsDifficulty: ["diff_1.png", "diff_2.png"],
+                recommendedToolsDifficulty: ["diff1.svg", "diff2.svg"],
                 recommendedToolsLink: ["https://miro.com/", "http://figma.com/"],
             },
             {
@@ -522,7 +522,7 @@ const INITIAL_STATE = {
                 participantRange: "0",
                 timeRange: "10m",
                 recommendedToolsIcon: ["miro_icon.svg", "figma_icon.svg"],
-                recommendedToolsDifficulty: ["diff_1.png", "diff_2.png"],
+                recommendedToolsDifficulty: ["diff1.svg", "diff2.svg"],
                 recommendedToolsLink: ["https://miro.com/", "http://figma.com/"],
             },
             {
@@ -543,7 +543,7 @@ const INITIAL_STATE = {
                 participantRange: "2+",
                 timeRange: "10-60m",
                 recommendedToolsIcon: ["miro_icon.svg", "figma_icon.svg"],
-                recommendedToolsDifficulty: ["diff_1.png", "diff_2.png"],
+                recommendedToolsDifficulty: ["diff1.svg", "diff2.svg"],
                 recommendedToolsLink: ["https://miro.com/", "http://figma.com/"],
             },
             {
@@ -566,7 +566,7 @@ const INITIAL_STATE = {
                 participantRange: "1+",
                 timeRange: "10-60m",
                 recommendedToolsIcon: ["miro_icon.svg", "figma_icon.svg"],
-                recommendedToolsDifficulty: ["diff_1.png", "diff_2.png"],
+                recommendedToolsDifficulty: ["diff1.svg", "diff2.svg"],
                 recommendedToolsLink: ["https://miro.com/", "http://figma.com/"],
             },
             {
@@ -588,7 +588,7 @@ const INITIAL_STATE = {
                 participantRange: "2+",
                 timeRange: "15-90m",
                 recommendedToolsIcon: ["miro_icon.svg", "figma_icon.svg"],
-                recommendedToolsDifficulty: ["diff_1.png", "diff_2.png"],
+                recommendedToolsDifficulty: ["diff1.svg", "diff2.svg"],
                 recommendedToolsLink: ["https://miro.com/", "http://figma.com/"],
             },
             {
@@ -610,7 +610,7 @@ const INITIAL_STATE = {
                 participantRange: "1+",
                 timeRange: "5-40m",
                 recommendedToolsIcon: ["miro_icon.svg", "figma_icon.svg"],
-                recommendedToolsDifficulty: ["diff_1.png", "diff_2.png"],
+                recommendedToolsDifficulty: ["diff1.svg", "diff2.svg"],
                 recommendedToolsLink: ["https://miro.com/", "http://figma.com/"],
             }
     ], //id, title, de scr, price, img
