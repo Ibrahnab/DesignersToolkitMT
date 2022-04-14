@@ -40,6 +40,37 @@ const MethodDescriptionPanel = ({methodDescriptionData, viewingMethod, flipViewi
         Meteor.call('projects.addNoteToMethod', selectedProject, methodDescriptionData.id, newComment);
     }
 
+    const timeAllocated = useTracker(() => {
+
+        if(!user || selectedProject === "") {
+          return[]
+      }
+  
+      const ta = ProjectsCollection.findOne({_id: selectedProject}).timeAllocated;
+      //console.log(ta);
+      return ta;
+      
+    })
+  
+    const timeUsed = useTracker(() => {
+
+    if(!user || selectedProject === "") {
+        return[]
+    }
+
+    const tu = ProjectsCollection.findOne({_id: selectedProject}).timeUsed;
+    //console.log(tu);
+    return tu;
+    
+    })
+
+    const getTimeUsed = (requestedPhase) => {
+        if(!user || selectedProject === "") {
+          return ""
+        }
+        return timeUsed.find(obj => obj.phase === requestedPhase).time
+      }
+
     const project = useTracker(() => {
         if(!user){
             return [];
@@ -172,7 +203,8 @@ const MethodDescriptionPanel = ({methodDescriptionData, viewingMethod, flipViewi
                                 <button className="method-button" id={phase} onClick={() => {phases.indexOf(`${phase}`) > -1 ? removeThisMethod(phase):addThisMethod(phase)}}>
                                     <p className="buttonText">{phase}</p>
                                 </button>
-                                <p className="time-left-text">0/60 min used</p>
+                                {user && <p className="time-left-text">{getTimeUsed(phase)}/{timeAllocated[0]}m</p>}
+                                
                             </div>
                          ))}
                     </div>

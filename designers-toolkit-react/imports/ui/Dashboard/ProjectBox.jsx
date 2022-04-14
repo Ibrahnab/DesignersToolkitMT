@@ -37,7 +37,7 @@ const ProjectBox = ({project, selectProject, selectedProject, selectedTeam}) =>{
     }
 
     return(
-        <div className={`projectBox` + identifySelected()} onClick={() => selectThisProject()}>
+        <div className={`projectBox` + identifySelected()} >
             <Row>
                 <Col>
                     <div className="editBtn" onClick={switchEdit}>
@@ -48,7 +48,7 @@ const ProjectBox = ({project, selectProject, selectedProject, selectedTeam}) =>{
             
             <Row>
                 <Col className="justify-content-md-center d-flex">
-                    <img className="cardImg" src="projectDiamonds.svg"></img>
+                    <img className="cardImg" src="projectDiamonds.svg" onClick={() => selectThisProject()}></img>
                 </Col>
             </Row>
             <Row>
