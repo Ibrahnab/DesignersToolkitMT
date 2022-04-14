@@ -48,7 +48,7 @@ const ProjectBox = ({project, selectProject, selectedProject, selectedTeam}) =>{
             
             <Row>
                 <Col className="justify-content-md-center d-flex">
-                    <img className="cardImg" src="projectDiamonds.svg" onClick={() => selectThisProject()}></img>
+                    <img className="diamondsIcon" src="projectDiamonds.svg" onClick={() => selectThisProject()}></img>
                 </Col>
             </Row>
             <Row>

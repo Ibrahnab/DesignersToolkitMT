@@ -1051,6 +1051,17 @@ a {
 }
 
 .projectBox:hover {
+  
+}
+
+.diamondsIcon {
+  margin-top:10px;
+  width:90px;
+  height:90px;
+  align-items: center;
+}
+
+.diamondsIcon:hover{
   cursor:pointer;
 }
 
@@ -1152,6 +1163,10 @@ a {
   right:0;
   padding-right:10px;
   
+}
+
+.editBtn:hover{
+  cursor:pointer;
 }
 
 .noteIcon{
