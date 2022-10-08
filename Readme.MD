@@ -19,4 +19,4 @@ http://localhost:3000
 
 ## Official webapplication URL
 
-https://designers-toolkit.meteorapp.com/
+https://designers-toolkit-team.meteorapp.com/
